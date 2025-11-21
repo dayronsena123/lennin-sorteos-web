@@ -550,12 +550,18 @@ function AdminPage({ setIsAdmin }) {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(`${API_URL}/admin/login`, loginData);
+      const res = await axios.post(`${API_URL}/admin/login`, {
+        email: loginData.email.trim(),
+        password: loginData.password.trim()
+      });
       if (res.data.success) {
         setIsAdmin(true);
         localStorage.setItem('adminToken', res.data.token);
       }
-    } catch (e) { alert('Credenciales incorrectas'); }
+    } catch (e) {
+      console.error(e);
+      alert('Error: ' + (e.response?.data?.error || e.message));
+    }
   };
 
   const updateTicketStatus = async (ticketId, newStatus) => {
