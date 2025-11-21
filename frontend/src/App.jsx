@@ -6,11 +6,23 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 // Configuration for Deployment
-// If VITE_API_URL is set (in Vercel), use it. Otherwise, use localhost.
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-const BASE_URL = import.meta.env.VITE_API_URL
-  ? import.meta.env.VITE_API_URL.replace('/api', '')
-  : 'http://localhost:5000';
+let API_URL = import.meta.env.VITE_API_URL;
+
+// Fallback inteligente: Si estamos en Vercel y no hay variable, usar Render.
+if (!API_URL) {
+  if (window.location.hostname.includes('vercel.app')) {
+    API_URL = 'https://lennin-backend.onrender.com/api';
+  } else {
+    API_URL = 'http://localhost:5000/api';
+  }
+} else {
+  // Asegurar que termine en /api si el usuario olvidó ponerlo
+  if (!API_URL.endsWith('/api')) {
+    API_URL += '/api';
+  }
+}
+
+const BASE_URL = API_URL.replace('/api', '');
 
 // ... (rest of imports and components)
 
