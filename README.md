@@ -1,8 +1,8 @@
-# 🎟️ Lennin Sorteos - Plataforma Web
+#  Lennin Sorteos - Plataforma Web
 
 Plataforma profesional para la gestión y venta de tickets de sorteos online.
 
-## 🚀 Características
+##  Características
 
 *   **Frontend Moderno:** Desarrollado con React y TailwindCSS para una experiencia de usuario fluida y atractiva.
 *   **Backend Robusto:** API RESTful construida con Node.js y Express.
@@ -10,13 +10,13 @@ Plataforma profesional para la gestión y venta de tickets de sorteos online.
 *   **Panel Administrativo:** Control total para aprobar tickets, ver estadísticas y gestionar el sorteo.
 *   **Validación de Comprobantes:** Sistema integrado para la subida y revisión de comprobantes de pago.
 
-## 🛠️ Tecnologías
+##  Tecnologías
 
 *   **Frontend:** React, Vite, TailwindCSS, Lucide Icons.
 *   **Backend:** Node.js, Express, MySQL2, JWT.
 *   **Base de Datos:** MySQL.
 
-## 📦 Instalación Local
+##  Instalación Local
 
 1.  Clonar el repositorio.
 2.  Instalar dependencias: `npm install` en `frontend` y `backend`.
