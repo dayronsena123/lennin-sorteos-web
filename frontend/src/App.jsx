@@ -781,7 +781,7 @@ function AdminPage({ setIsAdmin }) {
                 <div><p className="text-primary-400 mb-1">Fecha</p><p className="font-medium text-white text-lg">{new Date(selectedTicket.fecha_registro).toLocaleString()}</p></div>
               </div>
               <div className="border-2 border-primary-600 rounded-2xl overflow-hidden bg-black/50">
-                <img src={`http://localhost:5000${selectedTicket.comprobante_url}`} alt="comprobante" className="w-full object-contain max-h-[500px]" />
+                <img src={`${BASE_URL}${selectedTicket.comprobante_url}`} alt="comprobante" className="w-full object-contain max-h-[500px]" />
               </div>
             </div>
           </div>
