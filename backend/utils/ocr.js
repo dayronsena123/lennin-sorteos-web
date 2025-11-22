@@ -14,15 +14,25 @@ export const processImageOCR = async (imagePath) => {
     if (numbers) {
       const values = numbers.map(n => parseFloat(n));
 
-      // Si encuentra 10 (o cercano), es válido pero va a revisión
-      if (values.some(v => Math.abs(v - 10) < 0.5)) {
-        monto = 10.00;
-        estado = 'revision';
+      // Encontrar el monto más probable (el más cercano a 10)
+      const sortedByProximityTo10 = values.sort((a, b) => Math.abs(a - 10) - Math.abs(b - 10));
+      const probableMonto = sortedByProximityTo10[0];
+
+      // VALIDACIÓN MEJORADA:
+      // Si el monto está entre 9.50 y 10.50 → Válido (va a revisión manual)
+      if (probableMonto >= 9.50 && probableMonto <= 10.50) {
+        monto = probableMonto;
+        estado = 'revision'; // Admin debe verificar que sea real
       }
-      // Si encuentra 5 (y no 10), rechazar automáticamente
-      else if (values.some(v => Math.abs(v - 5) < 0.5)) {
-        monto = 5.00;
-        estado = 'rechazado';
+      // Si el monto es MENOR a 9.50 → RECHAZADO AUTOMÁTICO
+      else if (probableMonto < 9.50) {
+        monto = probableMonto;
+        estado = 'rechazado'; // Monto insuficiente
+      }
+      // Si el monto es MAYOR a 10.50 → Revisión (puede ser válido con propina)
+      else if (probableMonto > 10.50) {
+        monto = probableMonto;
+        estado = 'revision'; // Puede ser válido (ej: 10 + propina)
       }
     }
 

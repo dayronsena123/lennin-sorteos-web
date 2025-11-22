@@ -191,6 +191,31 @@ function FloatingWhatsApp() {
 }
 
 function HomePage() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const sorteoDate = new Date('2025-12-24T00:00:00-05:00'); // 24 de diciembre 12:00 AM Perú (Nochebuena)
+      const now = new Date();
+      const difference = sorteoDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-[80vh] flex flex-col">
       {/* Hero Section */}
@@ -213,6 +238,38 @@ function HomePage() {
           <p className="text-lg text-primary-300 mb-10">
             Transmisión en vivo vía Facebook
           </p>
+
+          {/* CONTADOR REGRESIVO */}
+          <div className="max-w-3xl mx-auto mb-10">
+            <div className="bg-gradient-to-br from-primary-700/80 to-primary-800/80 backdrop-blur-xl rounded-3xl p-8 border-2 border-secondary-500/30 shadow-2xl shadow-secondary-500/20 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-400 via-yellow-400 to-secondary-400 animate-pulse"></div>
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-secondary-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-500/20 rounded-full blur-3xl"></div>
+
+              <h3 className="text-2xl md:text-3xl font-black text-white mb-6 tracking-wide relative z-10">
+                ⏰ TIEMPO RESTANTE PARA EL SORTEO
+              </h3>
+
+              <div className="grid grid-cols-4 gap-3 md:gap-6 relative z-10">
+                {[
+                  { label: 'DÍAS', value: timeLeft.days },
+                  { label: 'HORAS', value: timeLeft.hours },
+                  { label: 'MINUTOS', value: timeLeft.minutes },
+                  { label: 'SEGUNDOS', value: timeLeft.seconds }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex flex-col items-center">
+                    <div className="bg-primary-900/90 backdrop-blur-sm rounded-2xl p-4 md:p-6 w-full border border-primary-600 shadow-lg hover:border-secondary-500/50 transition group">
+                      <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-secondary-400 to-yellow-300 group-hover:scale-110 transition duration-300">
+                        {String(item.value).padStart(2, '0')}
+                      </div>
+                    </div>
+                    <p className="text-xs md:text-sm font-bold text-primary-300 mt-2 uppercase tracking-widest">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/participar" className="px-10 py-4 bg-secondary-500 text-primary-900 rounded-full font-black text-xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-2">
               <Ticket size={24} /> COMPRAR TICKET (S/ 10)
@@ -226,13 +283,19 @@ function HomePage() {
 
       {/* Marquee */}
       <div className="bg-secondary-500 py-4 overflow-hidden">
-        <div className="flex justify-center gap-12 text-primary-900 font-black text-lg uppercase tracking-widest whitespace-nowrap animate-marquee">
+        <div className="flex gap-12 text-primary-900 font-black text-lg uppercase tracking-widest whitespace-nowrap" style={{ animation: 'marquee 20s linear infinite' }}>
           <span>★ 3 Laptops</span>
           <span>★ 1 Infinix G30 Pro</span>
           <span>★ Sorteo 24 Dic</span>
           <span>★ En Vivo Facebook</span>
           <span>★ 3 Laptops</span>
           <span>★ 1 Infinix G30 Pro</span>
+          <span>★ Sorteo 24 Dic</span>
+          <span>★ En Vivo Facebook</span>
+          <span>★ 3 Laptops</span>
+          <span>★ 1 Infinix G30 Pro</span>
+          <span>★ Sorteo 24 Dic</span>
+          <span>★ En Vivo Facebook</span>
         </div>
       </div>
 
@@ -578,10 +641,22 @@ function AdminPage({ setIsAdmin }) {
 
   const updateTicketStatus = async (ticketId, newStatus) => {
     try {
-      await axios.put(`${API_URL}/tickets/${ticketId}/status`, { estado: newStatus });
-      await loadTickets();
-      alert('Estado actualizado');
-    } catch (e) { alert('Error al actualizar'); }
+      if (newStatus === 'rechazado') {
+        // Si se rechaza, eliminar el ticket de la base de datos
+        if (confirm('¿Estás seguro de rechazar este ticket? Se eliminará permanentemente de la base de datos.')) {
+          await axios.delete(`${API_URL}/tickets/${ticketId}`);
+          await loadTickets();
+          alert('Ticket rechazado y eliminado');
+        }
+      } else {
+        // Si se aprueba o pone en revisión, solo actualizar el estado
+        await axios.put(`${API_URL}/tickets/${ticketId}/status`, { estado: newStatus });
+        await loadTickets();
+        alert('Estado actualizado');
+      }
+    } catch (e) {
+      alert('Error al actualizar: ' + (e.response?.data?.error || e.message));
+    }
   };
 
   const exportCSV = () => {

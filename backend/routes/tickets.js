@@ -68,4 +68,16 @@ router.put('/:ticketId/status', async (req, res) => {
   }
 });
 
+// Eliminar ticket (cuando se rechaza)
+router.delete('/:ticketId', async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    await pool.execute('DELETE FROM tickets WHERE ticket_id = ?', [ticketId]);
+    res.json({ success: true, message: 'Ticket eliminado' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al eliminar ticket' });
+  }
+});
+
 export default router;

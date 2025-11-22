@@ -11,35 +11,6 @@ Actualmente, el sistema usa el correo y contraseña de desarrollo. Para cambiarl
 4.  Busca las variables:
     *   `ADMIN_EMAIL`
     *   `ADMIN_PASSWORD`
-5.  Dale al botón **"Edit"** (lápiz) en cada una y pon los datos nuevos del cliente.
-6.  Click en **"Save Changes"**.
-7.  El servidor se reiniciará automáticamente. ¡Listo!
-
----
-
-## 2.  Configurar Dominio Personal (Lenninsorteos.com)
-Para que la página tenga un nombre profesional (`.com`), sigue estos pasos:
-
-### Paso A: Comprar el Dominio
-Compra el dominio en proveedores como **GoDaddy**, **Namecheap** o el mismo **Vercel**.
-
-### Paso B: Conectar a Vercel
-1.  Entra a [vercel.com](https://vercel.com/) y ve a tu proyecto **`lennin-sorteos-web`**.
-2.  Ve a la pestaña **"Settings"** -> **"Domains"**.
-3.  Escribe el dominio (ej: `lenninsorteos.com`) y dale a **Add**.
-4.  Vercel te dará unos valores DNS (normalmente un registro `A` o `CNAME`).
-5.  Ve a donde compraste el dominio (GoDaddy/Namecheap) y agrega esos registros DNS.
-6.  Espera unos minutos (a veces horas) y Vercel te mostrará el dominio en verde. ✅
-
----
-
-## 3. Estabilidad y "Que no se caiga" (IMPORTANTE)
-Actualmente estás usando los **Planes Gratuitos** de Render y Railway. Tienen limitaciones que debes conocer para un sorteo real.
-
-### El Problema del "Sueño" (Cold Start)
-*   **Render Free:** Si nadie entra a la página en 15 minutos, el servidor se "duerme".
-*   **Consecuencia:** La próxima persona que entre tendrá que esperar **~50 segundos** a que cargue. Parece que la página está rota, pero solo está "despertando".
-
 ### La Solución (Recomendada para el Lanzamiento)
 Para el día del sorteo o cuando empiece la publicidad, te recomiendo pagar el plan básico de Render:
 1.  En Render, ve a **"Settings"** -> **"Instance Type"**.
@@ -53,14 +24,82 @@ Para el día del sorteo o cuando empiece la publicidad, te recomiendo pagar el p
 
 ---
 
-## 4.  Resumen de Enlaces
-*   **Frontend (Página Web):** `https://lennin-sorteos-web.vercel.app` (o tu `.com` cuando lo pongas).
-*   **Backend (Servidor):** `https://lennin-backend.onrender.com`
-*   **Panel Admin:** Agrega `/admin` a tu web (ej: `lenninsorteos.com/admin`).
+## 5. 💰 Lista de Compras (Presupuesto para el Cliente)
+Para que la página funcione profesionalmente y no se caiga, esto es lo que debe pagar el cliente:
+
+### A. Pago Único / Anual
+*   **Dominio (.com):** Aprox. **$12 - $15 USD al año**.
+    *   *Dónde:* GoDaddy, Namecheap o Vercel.
+    *   *Por qué:* Para que se llame `lenninsorteos.com`.
+
+### B. Pagos Mensuales (Solo meses de sorteo)
+Si la página va a tener tráfico real y gente comprando tickets, **NO uses lo gratis**. Se caerá o será lenta.
+
+1.  **Servidor (Render - Plan Starter):** **$7 USD / mes**.
+    *   *Por qué:* Para que la página cargue rápido siempre (sin esperar 50s).
+    *   *Truco:* Cuando acabe el sorteo (ej. Enero), puedes volver al plan "Free" para no pagar hasta el siguiente sorteo.
+
+2.  **Base de Datos (Railway):** **$5 USD / mes** (aprox).
+    *   *Por qué:* Para guardar los tickets de forma segura.
+    *   *Nota:* Railway cobra por uso. Si nadie entra, cobran centavos. Pero necesitas poner una tarjeta para que no la borren.
+
+### 💵 Resumen Total
+*   **Costo Fijo Anual:** ~$15 USD (Dominio).
+*   **Costo Mensual (Mes de Sorteo):** ~$12 USD (Render + Railway).
+*   **Costo Mensual (Meses Muertos):** ~$0 - $2 USD (Si bajas Render a Free).
+
+### 💡 ¿Quieres pagar 1 vez al año? (Como un Hosting clásico)
+Si a tu cliente no le gusta pagar cada mes, haz esto:
+
+1.  **En Railway:** Compra **$60 USD de créditos** de una sola vez.
+    *   Eso se quedará en la cuenta y se irá gastando poco a poco (aprox. $5/mes).
+    *   **Resultado:** ¡Pagas hoy y no vuelves a pagar hasta el próximo año! Es lo mismo que un hosting anual, pero con mejor tecnología.
+
+2.  **En Render:** Si usas el plan Free, es gratis. Si usas el Starter, también puedes poner tarjeta, pero Render no tiene "bolsa de créditos" igual. Lo mejor es usar Free en meses muertos y pagar los $7 solo el mes del sorteo.
 
 ---
 
-##  Checklist Final para el Cliente
+## 6. 🛠️ Estrategia "Sorteos por Temporada"
+Como dices que los sorteos son por fechas (Navidad, Día de la Madre, etc.), haz esto para ahorrar dinero:
+
+1.  **Mes del Sorteo (Activo):**
+    *   Paga los $7 en Render.
+    *   Asegúrate que Railway tenga crédito.
+    *   La página volará 🚀.
+
+2.  **Meses sin Sorteo (Inactivo):**
+    *   Entra a Render -> Settings -> Instance Type -> Cmbia a **"Free"**.
+    *   La página seguirá existiendo, pero será un poco más lenta al abrir la primera vez. ¡Pero es gratis!
+    *   **NO borres nada**, solo baja el plan.
+
+---
+
+## 7. ❓ Preguntas Frecuentes (Lo que debes saber)
+
+### ¿Cuántos tickets pueden registrarse?
+*   **En Railway ($5/mes):** Tienes espacio para **miles y miles de tickets** (cientos de miles). No te vas a quedar sin espacio por un sorteo normal.
+*   **Límite Real:** El límite no es la cantidad de tickets, sino cuánta gente entra *al mismo tiempo*. Si entran 1000 personas en el mismo segundo, el plan básico podría ponerse lento, pero no se caerá.
+
+### ¿Qué pasa si NO pago Render y uso el Gratis?
+*   **Funciona:** Sí, la página funcionará.
+*   **El Riesgo:** Si nadie entra en 15 minutos, el servidor se "apaga". Cuando entre el siguiente cliente, la página se quedará en blanco cargando por **50 segundos**.
+*   *¿Es grave?* Para un negocio serio, sí. El cliente pensará que la página está malograda. Por eso recomiendo pagar los $7 solo el mes del sorteo.
+
+### ¿Vercel cobra?
+*   **No.** Para este tipo de páginas, Vercel es gratis y muy generoso. Solo cobra si tienes millones de visitas.
+
+---
+
+## 8. 🗣️ Guión para tu Cliente (Qué decirle)
+*"Jefe, para que el sistema sea seguro y no se caiga, usamos servidores en la nube de alta tecnología (como los que usa Uber o Netflix a pequeña escala)."*
+
+*"No es un hosting barato antiguo que se cuelga. Aquí pagamos por lo que usamos:"*
+1.  **Dominio:** $15 al año (su nombre .com).
+2.  **Servidor:** Le ponemos una recarga de $60 de saldo y con eso nos olvidamos del pago mensual por un buen tiempo. Es como ponerle gasolina al auto: lo llenamos hoy y nos dura todo el año.*"
+
+---
+
+## ✅ Checklist Final para el Cliente
 - [ ] Cambiar `ADMIN_EMAIL` y `ADMIN_PASSWORD` en Render.
 - [ ] Comprar dominio `.com` y conectarlo en Vercel.
 - [ ] (Opcional pero recomendado) Actualizar Render a plan "Starter" ($7) para evitar lentitud.
