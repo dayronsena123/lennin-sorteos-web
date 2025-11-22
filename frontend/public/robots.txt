@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lennin-sorteos-web.vercel.app/sitemap.xml
