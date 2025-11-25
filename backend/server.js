@@ -14,7 +14,13 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors({
-  origin: ['https://lennin-sorteos-web.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
+  origin: [
+    'https://www.lenninsorteos.com',
+    'https://lenninsorteos.com',
+    'https://lennin-sorteos-web.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ],
   credentials: true
 }));
 app.use(express.json());

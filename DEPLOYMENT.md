@@ -63,4 +63,4 @@ Aquí subiremos la página web (React).
 
 ## 5. ¡Listo!
 
-Vercel te dará un link (ejemplo: `https://lennin-sorteos-web.vercel.app`). ¡Esa es tu página web en vivo!
+Vercel te dará un link (ejemplo: `https://www.lenninsorteos.com`). ¡Esa es tu página web en vivo!
