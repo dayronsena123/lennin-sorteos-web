@@ -228,9 +228,9 @@ function Footer() {
           <div>
             <h4 className="text-white font-black mb-3 md:mb-4 uppercase tracking-wider text-xs md:text-sm border-b-2 border-secondary-500/50 pb-2 inline-block">Sorteo</h4>
             <div className="space-y-1 md:space-y-2 text-xs md:text-sm text-center">
-              <p className="text-primary-300">📅 <span className="text-white font-bold">24 Dic</span></p>
-              <p className="text-primary-300">🎁 <span className="text-white font-bold">3 Laptops</span></p>
-              <p className="text-primary-300">📱 <span className="text-white font-bold">1 Celular</span></p>
+              <p className="text-primary-300"> <span className="text-white font-bold">24 Dic</span></p>
+              <p className="text-primary-300"> <span className="text-white font-bold">3 Laptops</span></p>
+              <p className="text-primary-300"> <span className="text-white font-bold">1 Celular</span></p>
             </div>
           </div>
         </div>
