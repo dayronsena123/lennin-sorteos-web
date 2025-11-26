@@ -220,50 +220,37 @@ function HomePage() {
 
   return (
     <div className="min-h-[80vh] flex flex-col">
-      {/* Hero Section with Video Banner */}
-      <div className="relative flex-1 flex items-center justify-center overflow-hidden bg-primary-900 py-20 min-h-[600px]">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
+      {/* Hero Section with Video Banner - Clean (No Text Overlay) */}
+      <div className="relative w-full bg-primary-900">
+        <div className="relative w-full aspect-video md:aspect-[21/9] max-h-[80vh] overflow-hidden">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
           >
             <source src="/banner.mp4" type="video/mp4" />
             Tu navegador no soporta videos.
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/50 to-primary-900"></div>
+          {/* Gradient overlay for smooth transition at bottom */}
+          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-primary-900 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <div className="inline-block mb-4 px-4 py-1 rounded-full bg-accent-600/20 border border-accent-500/50 text-accent-400 font-bold tracking-wider text-sm animate-pulse">
-            ¡GRAN SORTEO 2025!
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-xl">
-            GANA <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-yellow-200">3 LAPTOPS</span>,<br />
-            1 CELULAR <span className="text-secondary-400">INFINIX G30 PRO</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-primary-200 mb-4 max-w-2xl mx-auto">
-            Fecha del Sorteo: <span className="text-white font-bold">24 de Diciembre</span>
-          </p>
-          <p className="text-lg text-primary-300 mb-10">
-            Transmisión en vivo vía Facebook
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-            <Link to="/participar" className="px-10 py-4 bg-secondary-500 text-primary-900 rounded-full font-black text-xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-2">
-              <Ticket size={24} /> COMPRAR TICKET (S/ 10)
+        {/* Buttons Section - Immediately below video */}
+        <div className="bg-primary-900 py-8 relative z-10 -mt-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/participar" className="px-12 py-5 bg-secondary-500 text-primary-900 rounded-full font-black text-2xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-3 animate-pulse">
+              <Ticket size={28} /> COMPRAR TICKET (S/ 10)
             </Link>
-            <Link to="/reglas" className="px-10 py-4 bg-primary-700/50 backdrop-blur-sm text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
+            <Link to="/reglas" className="px-10 py-4 bg-primary-800/80 backdrop-blur-sm text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
               VER REGLAS
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Countdown Section (Separated) */}
+      {/* Countdown Section */}
       <div className="bg-primary-800 py-12 border-b border-primary-700 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
@@ -544,51 +531,57 @@ function MyTicketsPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16 relative">
-      <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600 relative">
-        <div className="hidden lg:block absolute -left-48 top-0 w-48 h-full">
-          <img src="/ticket-man.png" alt="Buscar" className="w-full object-contain animate-pulse drop-shadow-2xl" onError={(e) => { e.target.onerror = null; }} />
-        </div>
+    <div className="max-w-4xl mx-auto px-4 py-16 relative">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
 
-        <div className="flex items-center gap-3 mb-6 relative z-10">
-          <div className="p-3 bg-primary-600 rounded-xl text-white">
-            <Search size={24} />
-          </div>
-          <h2 className="text-2xl font-bold text-white">Mis Tickets</h2>
-        </div>
-
-        <div className="bg-primary-800 p-6 rounded-2xl mb-6 border border-primary-600">
-          <p className="text-primary-300 mb-4">Ingresa tu DNI para ver el estado de tus tickets.</p>
-          <div className="flex gap-2">
-            <input value={userSearchDNI} onChange={e => setUserSearchDNI(e.target.value)} placeholder="DNI" maxLength={8} className="flex-1 px-4 py-3 rounded-xl bg-primary-900 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none" />
-            <button onClick={searchUserTickets} className="px-6 py-3 bg-secondary-500 text-primary-900 rounded-xl font-bold hover:bg-secondary-400 transition">BUSCAR</button>
-          </div>
-        </div>
-
-        <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-          {userTickets.length === 0 ? (
-            <div className="text-center text-primary-500 py-8">
-              <Ticket size={48} className="mx-auto mb-2 opacity-20" />
-              <p>No hay tickets para mostrar</p>
+        {/* Search Section */}
+        <div className="lg:col-span-2 bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-primary-600 rounded-xl text-white">
+              <Search size={24} />
             </div>
-          ) : userTickets.map(t => (
-            <div key={t.ticket_id} className="bg-primary-800 border border-primary-600 p-4 rounded-xl flex justify-between items-center group hover:border-secondary-500/50 transition">
-              <div>
-                <p className="font-bold text-white group-hover:text-secondary-400 transition">{t.ticket_id}</p>
-                <p className="text-sm text-primary-400">{t.nombre}</p>
-              </div>
-              <div className="text-right">
-                <span className={`inline-block px-2 py-1 rounded text-xs font-bold mb-1
-                  ${t.estado === 'aprobado' ? 'bg-green-900 text-green-400' :
-                    t.estado === 'rechazado' ? 'bg-red-900 text-red-400' :
-                      'bg-yellow-900 text-yellow-400'}`}>
-                  {t.estado.toUpperCase()}
-                </span>
-                <button onClick={() => setSelectedTicket(t)} className="block text-xs text-primary-300 hover:text-white underline">Ver detalle</button>
-              </div>
+            <h2 className="text-2xl font-bold text-white">Mis Tickets</h2>
+          </div>
+
+          <div className="bg-primary-800 p-6 rounded-2xl mb-6 border border-primary-600">
+            <p className="text-primary-300 mb-4">Ingresa tu DNI para ver el estado de tus tickets.</p>
+            <div className="flex gap-2">
+              <input value={userSearchDNI} onChange={e => setUserSearchDNI(e.target.value)} placeholder="DNI" maxLength={8} className="flex-1 px-4 py-3 rounded-xl bg-primary-900 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none" />
+              <button onClick={searchUserTickets} className="px-6 py-3 bg-secondary-500 text-primary-900 rounded-xl font-bold hover:bg-secondary-400 transition">BUSCAR</button>
             </div>
-          ))}
+          </div>
+
+          <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+            {userTickets.length === 0 ? (
+              <div className="text-center text-primary-500 py-8">
+                <Ticket size={48} className="mx-auto mb-2 opacity-20" />
+                <p>No hay tickets para mostrar</p>
+              </div>
+            ) : userTickets.map(t => (
+              <div key={t.ticket_id} className="bg-primary-800 border border-primary-600 p-4 rounded-xl flex justify-between items-center group hover:border-secondary-500/50 transition">
+                <div>
+                  <p className="font-bold text-white group-hover:text-secondary-400 transition">{t.ticket_id}</p>
+                  <p className="text-sm text-primary-400">{t.nombre}</p>
+                </div>
+                <div className="text-right">
+                  <span className={`inline-block px-2 py-1 rounded text-xs font-bold mb-1
+                    ${t.estado === 'aprobado' ? 'bg-green-900 text-green-400' :
+                      t.estado === 'rechazado' ? 'bg-red-900 text-red-400' :
+                        'bg-yellow-900 text-yellow-400'}`}>
+                    {t.estado.toUpperCase()}
+                  </span>
+                  <button onClick={() => setSelectedTicket(t)} className="block text-xs text-primary-300 hover:text-white underline">Ver detalle</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Ticket Man Image - Right Side */}
+        <div className="hidden lg:flex justify-center items-center">
+          <img src="/ticket-man.png" alt="Buscar" className="w-full max-w-xs object-contain animate-pulse drop-shadow-2xl transform scale-125 hover:scale-110 transition duration-500" onError={(e) => { e.target.onerror = null; }} />
+        </div>
+
       </div>
 
       {selectedTicket && (
@@ -600,7 +593,7 @@ function MyTicketsPage() {
             </div>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6 text-sm">
-                <div><p className="text-primary-400 mb-1">Participante</p><p className="font-medium text-white text-lg">{selectedTicket.nombre}</p></div>
+                <div><p className="text-primary-400 mb-1">Participante</p><p className="font-medium text-white text-lg">{selectedTicket.nombre} {selectedTicket.apellidos}</p></div>
                 <div><p className="text-primary-400 mb-1">DNI</p><p className="font-medium text-white text-lg">{selectedTicket.dni}</p></div>
                 <div><p className="text-primary-400 mb-1">Estado</p><p className="font-medium text-white text-lg">{selectedTicket.estado}</p></div>
                 <div><p className="text-primary-400 mb-1">Fecha</p><p className="font-medium text-white text-lg">{new Date(selectedTicket.fecha_registro).toLocaleString()}</p></div>
