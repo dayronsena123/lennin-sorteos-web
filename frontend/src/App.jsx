@@ -252,44 +252,45 @@ function HomePage() {
             Transmisión en vivo vía Facebook
           </p>
 
-          {/* CONTADOR REGRESIVO */}
-          <div className="max-w-3xl mx-auto mb-10">
-            <div className="bg-gradient-to-br from-primary-700/80 to-primary-800/80 backdrop-blur-xl rounded-3xl p-8 border-2 border-secondary-500/30 shadow-2xl shadow-secondary-500/20 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-400 via-yellow-400 to-secondary-400 animate-pulse"></div>
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-secondary-500/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-500/20 rounded-full blur-3xl"></div>
-
-              <h3 className="text-2xl md:text-3xl font-black text-white mb-6 tracking-wide relative z-10">
-                ⏰ TIEMPO RESTANTE PARA EL SORTEO
-              </h3>
-
-              <div className="grid grid-cols-4 gap-3 md:gap-6 relative z-10">
-                {[
-                  { label: 'DÍAS', value: timeLeft.days },
-                  { label: 'HORAS', value: timeLeft.hours },
-                  { label: 'MINUTOS', value: timeLeft.minutes },
-                  { label: 'SEGUNDOS', value: timeLeft.seconds }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
-                    <div className="bg-primary-900/90 backdrop-blur-sm rounded-2xl p-4 md:p-6 w-full border border-primary-600 shadow-lg hover:border-secondary-500/50 transition group">
-                      <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-secondary-400 to-yellow-300 group-hover:scale-110 transition duration-300">
-                        {String(item.value).padStart(2, '0')}
-                      </div>
-                    </div>
-                    <p className="text-xs md:text-sm font-bold text-primary-300 mt-2 uppercase tracking-widest">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
             <Link to="/participar" className="px-10 py-4 bg-secondary-500 text-primary-900 rounded-full font-black text-xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-2">
               <Ticket size={24} /> COMPRAR TICKET (S/ 10)
             </Link>
             <Link to="/reglas" className="px-10 py-4 bg-primary-700/50 backdrop-blur-sm text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
               VER REGLAS
             </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Countdown Section (Separated) */}
+      <div className="bg-primary-800 py-12 border-b border-primary-700 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <div className="bg-gradient-to-br from-primary-700/80 to-primary-800/80 backdrop-blur-xl rounded-3xl p-8 border-2 border-secondary-500/30 shadow-2xl shadow-secondary-500/20 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-400 via-yellow-400 to-secondary-400 animate-pulse"></div>
+
+            <h3 className="text-2xl md:text-3xl font-black text-white mb-6 tracking-wide text-center">
+              ⏰ TIEMPO RESTANTE PARA EL SORTEO
+            </h3>
+
+            <div className="grid grid-cols-4 gap-3 md:gap-6">
+              {[
+                { label: 'DÍAS', value: timeLeft.days },
+                { label: 'HORAS', value: timeLeft.hours },
+                { label: 'MINUTOS', value: timeLeft.minutes },
+                { label: 'SEGUNDOS', value: timeLeft.seconds }
+              ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center">
+                  <div className="bg-primary-900/90 backdrop-blur-sm rounded-2xl p-4 md:p-6 w-full border border-primary-600 shadow-lg hover:border-secondary-500/50 transition group">
+                    <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-secondary-400 to-yellow-300 group-hover:scale-110 transition duration-300">
+                      {String(item.value).padStart(2, '0')}
+                    </div>
+                  </div>
+                  <p className="text-xs md:text-sm font-bold text-primary-300 mt-2 uppercase tracking-widest">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -504,10 +505,6 @@ function RegisterPage() {
           <div className="bg-white p-4 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500 relative">
             <img src="/qr-yape.png" alt="QR Yape" className="w-full max-w-xs rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
           </div>
-          {/* Hombre señalando */}
-          <div className="relative w-full max-w-xs h-64">
-            <img src="/ticket-man.png" alt="Participa" className="absolute -top-10 -left-10 w-48 animate-bounce-slow drop-shadow-2xl" onError={(e) => { e.target.onerror = null; }} />
-          </div>
         </div>
 
       </div>
@@ -547,9 +544,13 @@ function MyTicketsPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600">
-        <div className="flex items-center gap-3 mb-6">
+    <div className="max-w-2xl mx-auto px-4 py-16 relative">
+      <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600 relative">
+        <div className="hidden lg:block absolute -left-48 top-0 w-48 h-full">
+          <img src="/ticket-man.png" alt="Buscar" className="w-full object-contain animate-pulse drop-shadow-2xl" onError={(e) => { e.target.onerror = null; }} />
+        </div>
+
+        <div className="flex items-center gap-3 mb-6 relative z-10">
           <div className="p-3 bg-primary-600 rounded-xl text-white">
             <Search size={24} />
           </div>
