@@ -220,9 +220,10 @@ function HomePage() {
 
   return (
     <div className="min-h-[80vh] flex flex-col">
-      {/* Hero Section with Video Banner - Clean (No Text Overlay) */}
+      {/* Hero Section with Video Banner - Full Width, Correct Aspect Ratio */}
       <div className="relative w-full bg-primary-900">
-        <div className="relative w-full aspect-video md:aspect-[21/9] max-h-[80vh] overflow-hidden">
+        {/* Aspect Ratio 1920/640 is exactly 3:1 */}
+        <div className="relative w-full aspect-[3/1] overflow-hidden shadow-2xl">
           <video
             autoPlay
             loop
@@ -233,19 +234,41 @@ function HomePage() {
             <source src="/banner.mp4" type="video/mp4" />
             Tu navegador no soporta videos.
           </video>
-          {/* Gradient overlay for smooth transition at bottom */}
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-primary-900 to-transparent"></div>
+          {/* Subtle gradient at bottom to blend with next section */}
+          <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-primary-900 to-transparent"></div>
         </div>
 
-        {/* Buttons Section - Immediately below video */}
-        <div className="bg-primary-900 py-8 relative z-10 -mt-12">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link to="/participar" className="px-12 py-5 bg-secondary-500 text-primary-900 rounded-full font-black text-2xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-3 animate-pulse">
-              <Ticket size={28} /> COMPRAR TICKET (S/ 10)
-            </Link>
-            <Link to="/reglas" className="px-10 py-4 bg-primary-800/80 backdrop-blur-sm text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
-              VER REGLAS
-            </Link>
+        {/* Content Section - Below Video */}
+        <div className="bg-primary-900 pt-8 pb-12 px-4 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+
+            {/* Restored Text Content */}
+            <div className="mb-10 animate-fade-in-up">
+              <div className="inline-block mb-4 px-6 py-2 rounded-full bg-accent-600/20 border border-accent-500/50 text-accent-400 font-bold tracking-wider text-sm md:text-base animate-pulse">
+                ¡GRAN SORTEO 2025!
+              </div>
+              <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-xl">
+                GANA <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-yellow-200">3 LAPTOPS</span>,<br />
+                1 CELULAR <span className="text-secondary-400">INFINIX G30 PRO</span>
+              </h1>
+              <p className="text-xl md:text-3xl text-primary-200 mb-4 max-w-3xl mx-auto font-medium">
+                Fecha del Sorteo: <span className="text-white font-bold">24 de Diciembre</span>
+              </p>
+              <p className="text-lg md:text-xl text-primary-300">
+                Transmisión en vivo vía Facebook
+              </p>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link to="/participar" className="px-12 py-5 bg-secondary-500 text-primary-900 rounded-full font-black text-2xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-3 animate-bounce-subtle">
+                <Ticket size={28} /> COMPRAR TICKET (S/ 10)
+              </Link>
+              <Link to="/reglas" className="px-10 py-4 bg-primary-800 text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
+                VER REGLAS
+              </Link>
+            </div>
+
           </div>
         </div>
       </div>
@@ -578,7 +601,7 @@ function MyTicketsPage() {
         </div>
 
         {/* Ticket Man Image - Right Side */}
-        <div className="hidden lg:flex justify-center items-center">
+        <div className="hidden lg:flex justify-center items-center transform scale-x-[-1]">
           <img src="/ticket-man.png" alt="Buscar" className="w-full max-w-xs object-contain animate-pulse drop-shadow-2xl transform scale-125 hover:scale-110 transition duration-500" onError={(e) => { e.target.onerror = null; }} />
         </div>
 
