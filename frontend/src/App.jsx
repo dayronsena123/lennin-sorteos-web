@@ -162,17 +162,87 @@ function Header({ isAdmin, setIsAdmin }) {
 
 function Footer() {
   return (
-    <footer className="bg-primary-900 border-t border-primary-800 py-12 text-center relative z-10">
-      <div className="max-w-7xl mx-auto px-4">
-        <img src="/lenninsorteoslogo.jpg" alt="Logo" className="h-16 w-16 rounded-full mx-auto mb-6 border-2 border-secondary-500 opacity-80 grayscale hover:grayscale-0 transition duration-500" />
-        <h2 className="text-2xl font-bold text-white mb-8 tracking-widest">LENNIN SORTEOS</h2>
-        <div className="flex justify-center gap-8 mb-8">
-          <a href="https://www.facebook.com/share/1Ca6WoigVf/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-secondary-400 transition transform hover:scale-110"><Facebook size={28} /></a>
-          <a href="https://www.instagram.com/lenninbenito?igsh=ZjYxMTY5aXg5Znhw" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-secondary-400 transition transform hover:scale-110"><Instagram size={28} /></a>
-          <a href="https://www.tiktok.com/@lenninbeno?_r=1&_t=ZS-91XnYAseb2N" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-secondary-400 transition transform hover:scale-110"><TikTokIcon size={28} /></a>
+    <footer className="bg-gradient-to-b from-primary-900 via-primary-950 to-black border-t-2 border-secondary-500/30 py-12 md:py-16 relative z-10 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5">
+        <div className="absolute top-10 right-10 w-64 h-64 bg-secondary-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-600 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+
+        {/* Logo & Main Info - Centered */}
+        <div className="text-center mb-10 md:mb-12">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <img src="/lenninsorteoslogo.jpg" alt="Logo" className="h-16 md:h-20 w-16 md:w-20 rounded-full border-4 border-secondary-500 shadow-2xl shadow-secondary-500/50 hover:scale-110 transition duration-500" />
+            <div className="text-left">
+              <h3 className="text-2xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-secondary-400">LENNIN</h3>
+              <p className="text-secondary-400 font-bold text-base md:text-xl tracking-widest">SORTEOS</p>
+            </div>
+          </div>
+          <p className="text-primary-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed px-4">
+            Sorteos 100% transparentes. ¡Tu oportunidad de ganar increíbles premios!
+          </p>
         </div>
-        <p className="text-primary-500 text-sm mb-2">© 2025 Lennin Sorteos. Todos los derechos reservados.</p>
-        <p className="text-primary-600 text-xs font-medium">Created by Dayron</p>
+
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12 text-center">
+
+          {/* Navigation Links */}
+          <div>
+            <h4 className="text-white font-black mb-3 md:mb-4 uppercase tracking-wider text-xs md:text-sm border-b-2 border-secondary-500/50 pb-2 inline-block">Navegar</h4>
+            <ul className="space-y-2">
+              <li><Link to="/" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Inicio</Link></li>
+              <li><Link to="/reglas" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Reglas</Link></li>
+              <li><Link to="/participar" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Participar</Link></li>
+            </ul>
+          </div>
+
+          {/* More Links */}
+          <div>
+            <h4 className="text-white font-black mb-3 md:mb-4 uppercase tracking-wider text-xs md:text-sm border-b-2 border-secondary-500/50 pb-2 inline-block">Más</h4>
+            <ul className="space-y-2">
+              <li><Link to="/mis-tickets" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Mis Tickets</Link></li>
+              <li><Link to="/ganadores" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Ganadores</Link></li>
+              <li><Link to="/contacto" className="text-primary-300 hover:text-secondary-400 transition text-xs md:text-sm block">→ Contacto</Link></li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h4 className="text-white font-black mb-3 md:mb-4 uppercase tracking-wider text-xs md:text-sm border-b-2 border-secondary-500/50 pb-2 inline-block">Síguenos</h4>
+            <div className="flex justify-center gap-3 mb-3">
+              <a href="https://www.facebook.com/share/1Ca6WoigVf/" target="_blank" rel="noopener noreferrer" className="p-2 md:p-3 bg-gradient-to-br from-primary-800 to-primary-900 rounded-xl text-primary-300 hover:text-white hover:from-blue-600 hover:to-blue-700 transition transform hover:scale-110 shadow-lg">
+                <Facebook size={18} />
+              </a>
+              <a href="https://www.instagram.com/lenninbenito?igsh=ZjYxMTY5aXg5Znhw" target="_blank" rel="noopener noreferrer" className="p-2 md:p-3 bg-gradient-to-br from-primary-800 to-primary-900 rounded-xl text-primary-300 hover:text-white hover:from-pink-600 hover:to-purple-600 transition transform hover:scale-110 shadow-lg">
+                <Instagram size={18} />
+              </a>
+              <a href="https://www.tiktok.com/@lenninbeno?_r=1&_t=ZS-91XnYAseb2N" target="_blank" rel="noopener noreferrer" className="p-2 md:p-3 bg-gradient-to-br from-primary-800 to-primary-900 rounded-xl text-primary-300 hover:text-white hover:from-black hover:to-gray-900 transition transform hover:scale-110 shadow-lg">
+                <TikTokIcon size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Sorteo Info */}
+          <div>
+            <h4 className="text-white font-black mb-3 md:mb-4 uppercase tracking-wider text-xs md:text-sm border-b-2 border-secondary-500/50 pb-2 inline-block">Sorteo</h4>
+            <div className="space-y-1 md:space-y-2 text-xs md:text-sm text-center">
+              <p className="text-primary-300">📅 <span className="text-white font-bold">24 Dic</span></p>
+              <p className="text-primary-300">🎁 <span className="text-white font-bold">3 Laptops</span></p>
+              <p className="text-primary-300">📱 <span className="text-white font-bold">1 Celular</span></p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t-2 border-primary-800 pt-6 md:pt-8 text-center space-y-2 md:space-y-3">
+          <p className="text-primary-400 text-xs md:text-sm">© 2025 <span className="text-white font-bold">Lennin Sorteos</span>. Todos los derechos reservados.</p>
+          <p className="text-primary-500 text-xs">
+            Desarrollado por <span className="text-secondary-400 font-bold">Dayron</span> |
+            <a href="https://www.lenninsorteos.com" className="text-secondary-400 hover:text-secondary-300 ml-1 font-bold hover:underline transition">lenninsorteos.com</a>
+          </p>
+        </div>
       </div>
     </footer>
   );
@@ -234,8 +304,8 @@ function HomePage() {
             <source src="/banner.mp4" type="video/mp4" />
             Tu navegador no soporta videos.
           </video>
-          {/* Subtle gradient at bottom to blend with next section */}
-          <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-primary-900 to-transparent"></div>
+          {/* Improved gradient at bottom for smooth blend */}
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent"></div>
         </div>
 
         {/* Content Section - Below Video */}
@@ -437,10 +507,18 @@ function RegisterPage() {
   };
 
   return (
-    <div className="max-w-[95%] mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+
+      {/* Imagen "Cómo Participar" - Visible en móvil arriba */}
+      <div className="lg:hidden mb-8 flex justify-center">
+        <div className="bg-primary-800 p-4 rounded-3xl border border-primary-600 shadow-xl max-w-sm w-full">
+          <img src="/como-participar.png" alt="Cómo participar" className="w-full rounded-2xl shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x600?text=Instrucciones"; }} />
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-        {/* Columna Izquierda: Cómo Participar */}
+        {/* Columna Izquierda: Cómo Participar - Solo desktop */}
         <div className="hidden lg:block sticky top-24">
           <div className="bg-primary-800 p-4 rounded-3xl border border-primary-600 shadow-xl transform hover:scale-105 transition duration-500">
             <img src="/como-participar.png" alt="Cómo participar" className="w-full rounded-2xl shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x600?text=Instrucciones"; }} />
@@ -448,69 +526,69 @@ function RegisterPage() {
         </div>
 
         {/* Columna Central: Formulario */}
-        <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600 relative z-10">
+        <div className="bg-primary-700 p-6 md:p-8 rounded-3xl shadow-2xl border border-primary-600 relative z-10">
           <div className="absolute -top-6 -right-6 bg-accent-500 text-white w-20 h-20 rounded-full flex items-center justify-center font-black text-xl shadow-lg transform rotate-12 z-20">
             S/ 10
           </div>
-          <h2 className="text-3xl font-bold text-white mb-2 text-center">Registra tu Ticket</h2>
-          <p className="text-primary-300 mb-8 text-center">Completa tus datos para participar</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">Registra tu Ticket</h2>
+          <p className="text-primary-300 mb-6 md:mb-8 text-center text-sm md:text-base">Completa tus datos para participar</p>
 
-          <div className="space-y-5">
+          <div className="space-y-4 md:space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Nombres</label>
-                <input name="nombre" value={formData.nombre} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="Ej. Juan" />
+                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Nombres</label>
+                <input name="nombre" value={formData.nombre} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="Ej. Juan" />
               </div>
               <div>
-                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Apellidos</label>
-                <input name="apellidos" value={formData.apellidos} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="Ej. Pérez" />
+                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Apellidos</label>
+                <input name="apellidos" value={formData.apellidos} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="Ej. Pérez" />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">DNI</label>
-                <input name="dni" maxLength={8} value={formData.dni} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="8 dígitos" />
+                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">DNI</label>
+                <input name="dni" maxLength={8} value={formData.dni} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="8 dígitos" />
               </div>
               <div>
-                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">WhatsApp</label>
-                <input name="whatsapp" maxLength={9} value={formData.whatsapp} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="9 dígitos" />
+                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">WhatsApp</label>
+                <input name="whatsapp" maxLength={9} value={formData.whatsapp} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="9 dígitos" />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Región</label>
-              <select name="region" value={formData.region} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition">
+              <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Región</label>
+              <select name="region" value={formData.region} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition text-sm md:text-base">
                 <option value="" className="bg-primary-800">Selecciona tu región</option>
                 {regiones.map(r => <option key={r} value={r} className="bg-primary-800">{r}</option>)}
               </select>
             </div>
 
-            <div className="border-2 border-dashed border-primary-500 rounded-2xl p-8 text-center hover:border-secondary-500 hover:bg-primary-600/50 transition cursor-pointer group" onClick={() => document.getElementById('file').click()}>
+            <div className="border-2 border-dashed border-primary-500 rounded-2xl p-6 md:p-8 text-center hover:border-secondary-500 hover:bg-primary-600/50 transition cursor-pointer group" onClick={() => document.getElementById('file').click()}>
               <input id="file" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
               {comprobantePreview ? (
                 <img src={comprobantePreview} alt="preview" className="max-h-48 mx-auto rounded-lg shadow-lg" />
               ) : (
                 <div className="text-primary-400 group-hover:text-secondary-400 transition">
-                  <Upload className="mx-auto mb-3" size={40} />
-                  <p className="font-medium">Clic para subir foto del comprobante</p>
+                  <Upload className="mx-auto mb-3" size={32} />
+                  <p className="font-medium text-sm md:text-base">Clic para subir foto del comprobante</p>
                   <p className="text-xs mt-2 opacity-70">JPG, PNG, WEBP (Max 5MB)</p>
                 </div>
               )}
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-primary-800/50 rounded-xl">
+            <div className="flex items-center gap-3 p-3 md:p-4 bg-primary-800/50 rounded-xl">
               <input type="checkbox" id="terms" name="aceptaTerminos" checked={formData.aceptaTerminos} onChange={handleInputChange} className="w-5 h-5 text-secondary-500 rounded focus:ring-secondary-500 bg-primary-700 border-primary-500" />
-              <label htmlFor="terms" className="text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
+              <label htmlFor="terms" className="text-xs md:text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
             </div>
 
-            <button onClick={handleSubmit} disabled={loading} className="w-full py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1">
+            <button onClick={handleSubmit} disabled={loading} className="w-full py-3 md:py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-base md:text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1">
               {loading ? 'ENVIANDO...' : 'ENVIAR REGISTRO'}
             </button>
           </div>
         </div>
 
-        {/* Columna Derecha: QR Yape */}
+        {/* Columna Derecha: QR Yape - Solo desktop */}
         <div className="hidden lg:flex flex-col items-center sticky top-24 gap-4">
           <div className="bg-white p-4 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500 relative">
             <img src="/qr-yape.png" alt="QR Yape" className="w-full max-w-xs rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
@@ -518,6 +596,14 @@ function RegisterPage() {
         </div>
 
       </div>
+
+      {/* QR Yape - Visible en móvil abajo */}
+      <div className="lg:hidden mt-8 flex justify-center">
+        <div className="bg-white p-4 rounded-3xl shadow-2xl max-w-sm w-full">
+          <img src="/qr-yape.png" alt="QR Yape" className="w-full rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
+        </div>
+      </div>
+
 
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={() => setShowModal(null)}>
