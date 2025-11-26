@@ -17,7 +17,6 @@ app.use(cors({
   origin: [
     'https://www.lenninsorteos.com',
     'https://lenninsorteos.com',
-    'https://lennin-sorteos-web.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000'
   ],
