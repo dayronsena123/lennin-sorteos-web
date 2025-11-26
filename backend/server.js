@@ -34,6 +34,7 @@ const initDB = async () => {
         id INT AUTO_INCREMENT PRIMARY KEY,
         ticket_id VARCHAR(20) UNIQUE NOT NULL,
         nombre VARCHAR(200) NOT NULL,
+        apellidos VARCHAR(200) NOT NULL,
         dni VARCHAR(8) NOT NULL,
         whatsapp VARCHAR(9) NOT NULL,
         region VARCHAR(100) NOT NULL,
@@ -47,6 +48,16 @@ const initDB = async () => {
         INDEX idx_fecha (fecha_registro)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
     `);
+
+    // Auto-migration for 'apellidos'
+    try {
+      await pool.query("ALTER TABLE tickets ADD COLUMN apellidos VARCHAR(200) NOT NULL AFTER nombre");
+      console.log("Column 'apellidos' added to tickets table");
+    } catch (e) {
+      // Ignore if column already exists
+      console.log("Column 'apellidos' check passed");
+    }
+
     console.log('Database initialized (tickets table checked)');
   } catch (err) {
     console.error('Error initializing DB:', err);

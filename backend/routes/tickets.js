@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.post('/', upload.single('comprobante'), async (req, res) => {
   try {
-    const { nombre, dni, whatsapp, region } = req.body;
-    if (!nombre || !dni || !whatsapp || !region || !req.file) return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    const { nombre, apellidos, dni, whatsapp, region } = req.body;
+    if (!nombre || !apellidos || !dni || !whatsapp || !region || !req.file) return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     if (!/^[0-9]{8}$/.test(dni)) return res.status(400).json({ error: 'DNI inválido' });
     if (!/^[0-9]{9}$/.test(whatsapp)) return res.status(400).json({ error: 'WhatsApp inválido' });
 
@@ -20,10 +20,10 @@ router.post('/', upload.single('comprobante'), async (req, res) => {
     const comprobanteUrl = `/uploads/${req.file.filename}`;
 
     const query = `
-      INSERT INTO tickets (ticket_id, nombre, dni, whatsapp, region, comprobante_url, monto_detectado, estado, fecha_registro)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())
+      INSERT INTO tickets (ticket_id, nombre, apellidos, dni, whatsapp, region, comprobante_url, monto_detectado, estado, fecha_registro)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
     `;
-    await pool.execute(query, [ticketId, nombre, dni, whatsapp, region, comprobanteUrl, ocr.monto, ocr.estado]);
+    await pool.execute(query, [ticketId, nombre, apellidos, dni, whatsapp, region, comprobanteUrl, ocr.monto, ocr.estado]);
 
     const [rows] = await pool.execute('SELECT * FROM tickets WHERE ticket_id = ?', [ticketId]);
     res.status(201).json(rows[0]);

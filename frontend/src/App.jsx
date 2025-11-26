@@ -220,11 +220,22 @@ function HomePage() {
 
   return (
     <div className="min-h-[80vh] flex flex-col">
-      {/* Hero Section */}
-      <div className="relative flex-1 flex items-center justify-center overflow-hidden bg-primary-900 py-20">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-secondary-500/20 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[120px]"></div>
+      {/* Hero Section with Video Banner */}
+      <div className="relative flex-1 flex items-center justify-center overflow-hidden bg-primary-900 py-20 min-h-[600px]">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-40"
+          >
+            <source src="/banner.mp4" type="video/mp4" />
+            Tu navegador no soporta videos.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/50 to-primary-900"></div>
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <div className="inline-block mb-4 px-4 py-1 rounded-full bg-accent-600/20 border border-accent-500/50 text-accent-400 font-bold tracking-wider text-sm animate-pulse">
@@ -367,7 +378,7 @@ function WinnersPage() {
 }
 
 function RegisterPage() {
-  const [formData, setFormData] = useState({ nombre: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
+  const [formData, setFormData] = useState({ nombre: '', apellidos: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
   const [comprobante, setComprobante] = useState(null);
   const [comprobantePreview, setComprobantePreview] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -392,7 +403,7 @@ function RegisterPage() {
   };
 
   const handleSubmit = async () => {
-    if (!formData.nombre || !formData.dni || !formData.whatsapp || !formData.region || !comprobante || !formData.aceptaTerminos) return alert('Completa todos los campos');
+    if (!formData.nombre || !formData.apellidos || !formData.dni || !formData.whatsapp || !formData.region || !comprobante || !formData.aceptaTerminos) return alert('Completa todos los campos');
     if (!/^[0-9]{8}$/.test(formData.dni)) return alert('DNI inválido');
     if (!/^[0-9]{9}$/.test(formData.whatsapp)) return alert('WhatsApp inválido');
 
@@ -400,13 +411,14 @@ function RegisterPage() {
     try {
       const fd = new FormData();
       fd.append('nombre', formData.nombre);
+      fd.append('apellidos', formData.apellidos);
       fd.append('dni', formData.dni);
       fd.append('whatsapp', formData.whatsapp);
       fd.append('region', formData.region);
       fd.append('comprobante', comprobante);
       const res = await axios.post(`${API_URL}/tickets`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
       setShowModal(res.data);
-      setFormData({ nombre: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
+      setFormData({ nombre: '', apellidos: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
       setComprobante(null); setComprobantePreview(null);
     } catch (err) {
       alert('Error al enviar: ' + (err.response?.data?.error || err.message));
@@ -414,61 +426,90 @@ function RegisterPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600 relative">
-        <div className="absolute -top-6 -right-6 bg-accent-500 text-white w-20 h-20 rounded-full flex items-center justify-center font-black text-xl shadow-lg transform rotate-12">
-          S/ 10
+    <div className="max-w-[95%] mx-auto px-4 py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+        {/* Columna Izquierda: Cómo Participar */}
+        <div className="hidden lg:block sticky top-24">
+          <div className="bg-primary-800 p-4 rounded-3xl border border-primary-600 shadow-xl transform hover:scale-105 transition duration-500">
+            <img src="/como-participar.png" alt="Cómo participar" className="w-full rounded-2xl shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x600?text=Instrucciones"; }} />
+          </div>
         </div>
-        <h2 className="text-3xl font-bold text-white mb-2">Registra tu Ticket</h2>
-        <p className="text-primary-300 mb-8">Completa tus datos para participar</p>
 
-        <div className="space-y-5">
-          <div>
-            <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Nombre Completo</label>
-            <input name="nombre" value={formData.nombre} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="Ej. Juan Pérez" />
+        {/* Columna Central: Formulario */}
+        <div className="bg-primary-700 p-8 rounded-3xl shadow-2xl border border-primary-600 relative z-10">
+          <div className="absolute -top-6 -right-6 bg-accent-500 text-white w-20 h-20 rounded-full flex items-center justify-center font-black text-xl shadow-lg transform rotate-12 z-20">
+            S/ 10
           </div>
+          <h2 className="text-3xl font-bold text-white mb-2 text-center">Registra tu Ticket</h2>
+          <p className="text-primary-300 mb-8 text-center">Completa tus datos para participar</p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">DNI</label>
-              <input name="dni" maxLength={8} value={formData.dni} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="8 dígitos" />
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">WhatsApp</label>
-              <input name="whatsapp" maxLength={9} value={formData.whatsapp} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="9 dígitos" />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Región</label>
-            <select name="region" value={formData.region} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition">
-              <option value="" className="bg-primary-800">Selecciona tu región</option>
-              {regiones.map(r => <option key={r} value={r} className="bg-primary-800">{r}</option>)}
-            </select>
-          </div>
-
-          <div className="border-2 border-dashed border-primary-500 rounded-2xl p-8 text-center hover:border-secondary-500 hover:bg-primary-600/50 transition cursor-pointer group" onClick={() => document.getElementById('file').click()}>
-            <input id="file" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
-            {comprobantePreview ? (
-              <img src={comprobantePreview} alt="preview" className="max-h-48 mx-auto rounded-lg shadow-lg" />
-            ) : (
-              <div className="text-primary-400 group-hover:text-secondary-400 transition">
-                <Upload className="mx-auto mb-3" size={40} />
-                <p className="font-medium">Clic para subir foto del comprobante</p>
-                <p className="text-xs mt-2 opacity-70">JPG, PNG, WEBP (Max 5MB)</p>
+          <div className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Nombres</label>
+                <input name="nombre" value={formData.nombre} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="Ej. Juan" />
               </div>
-            )}
-          </div>
+              <div>
+                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Apellidos</label>
+                <input name="apellidos" value={formData.apellidos} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="Ej. Pérez" />
+              </div>
+            </div>
 
-          <div className="flex items-center gap-3 p-4 bg-primary-800/50 rounded-xl">
-            <input type="checkbox" id="terms" name="aceptaTerminos" checked={formData.aceptaTerminos} onChange={handleInputChange} className="w-5 h-5 text-secondary-500 rounded focus:ring-secondary-500 bg-primary-700 border-primary-500" />
-            <label htmlFor="terms" className="text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
-          </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">DNI</label>
+                <input name="dni" maxLength={8} value={formData.dni} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="8 dígitos" />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">WhatsApp</label>
+                <input name="whatsapp" maxLength={9} value={formData.whatsapp} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500" placeholder="9 dígitos" />
+              </div>
+            </div>
 
-          <button onClick={handleSubmit} disabled={loading} className="w-full py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1">
-            {loading ? 'ENVIANDO...' : 'ENVIAR REGISTRO'}
-          </button>
+            <div>
+              <label className="block text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Región</label>
+              <select name="region" value={formData.region} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition">
+                <option value="" className="bg-primary-800">Selecciona tu región</option>
+                {regiones.map(r => <option key={r} value={r} className="bg-primary-800">{r}</option>)}
+              </select>
+            </div>
+
+            <div className="border-2 border-dashed border-primary-500 rounded-2xl p-8 text-center hover:border-secondary-500 hover:bg-primary-600/50 transition cursor-pointer group" onClick={() => document.getElementById('file').click()}>
+              <input id="file" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+              {comprobantePreview ? (
+                <img src={comprobantePreview} alt="preview" className="max-h-48 mx-auto rounded-lg shadow-lg" />
+              ) : (
+                <div className="text-primary-400 group-hover:text-secondary-400 transition">
+                  <Upload className="mx-auto mb-3" size={40} />
+                  <p className="font-medium">Clic para subir foto del comprobante</p>
+                  <p className="text-xs mt-2 opacity-70">JPG, PNG, WEBP (Max 5MB)</p>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-3 p-4 bg-primary-800/50 rounded-xl">
+              <input type="checkbox" id="terms" name="aceptaTerminos" checked={formData.aceptaTerminos} onChange={handleInputChange} className="w-5 h-5 text-secondary-500 rounded focus:ring-secondary-500 bg-primary-700 border-primary-500" />
+              <label htmlFor="terms" className="text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
+            </div>
+
+            <button onClick={handleSubmit} disabled={loading} className="w-full py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1">
+              {loading ? 'ENVIANDO...' : 'ENVIAR REGISTRO'}
+            </button>
+          </div>
         </div>
+
+        {/* Columna Derecha: QR Yape */}
+        <div className="hidden lg:flex flex-col items-center sticky top-24 gap-4">
+          <div className="bg-white p-4 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500 relative">
+            <img src="/qr-yape.png" alt="QR Yape" className="w-full max-w-xs rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
+          </div>
+          {/* Hombre señalando */}
+          <div className="relative w-full max-w-xs h-64">
+            <img src="/ticket-man.png" alt="Participa" className="absolute -top-10 -left-10 w-48 animate-bounce-slow drop-shadow-2xl" onError={(e) => { e.target.onerror = null; }} />
+          </div>
+        </div>
+
       </div>
 
       {showModal && (
@@ -662,10 +703,11 @@ function AdminPage({ setIsAdmin }) {
   };
 
   const exportCSV = () => {
-    const headers = ['Ticket', 'Nombre', 'DNI', 'WhatsApp', 'Region', 'Monto', 'Estado', 'Fecha'];
+    const headers = ['Ticket', 'Nombre', 'Apellidos', 'DNI', 'WhatsApp', 'Region', 'Monto', 'Estado', 'Fecha'];
     const rows = tickets.map(t => [
       `"${t.ticket_id}"`,
       `"${t.nombre}"`,
+      `"${t.apellidos || ''}"`,
       `"${t.dni}"`,
       `"${t.whatsapp}"`,
       `"${t.region}"`,
@@ -687,8 +729,8 @@ function AdminPage({ setIsAdmin }) {
       const doc = new jsPDF();
       doc.text("Reporte de Sorteo - Lennin Sorteos", 14, 16);
       autoTable(doc, {
-        head: [['Ticket', 'Nombre', 'DNI', 'Monto', 'Estado']],
-        body: tickets.map(t => [t.ticket_id, t.nombre, t.dni, t.monto_detectado || '-', t.estado]),
+        head: [['Ticket', 'Nombre', 'Apellidos', 'DNI', 'Monto', 'Estado']],
+        body: tickets.map(t => [t.ticket_id, t.nombre, t.apellidos || '', t.dni, t.monto_detectado || '-', t.estado]),
         startY: 20,
       });
       doc.save(`reporte_sorteo_${new Date().toISOString().split('T')[0]}.pdf`);
@@ -807,6 +849,7 @@ function AdminPage({ setIsAdmin }) {
                 <tr>
                   <th className="px-6 py-3">Ticket</th>
                   <th className="px-6 py-3">Nombre</th>
+                  <th className="px-6 py-3">Apellidos</th>
                   <th className="px-6 py-3">DNI</th>
                   <th className="px-6 py-3">Región</th>
                   <th className="px-6 py-3">Monto</th>
@@ -819,6 +862,7 @@ function AdminPage({ setIsAdmin }) {
                   <tr key={t.ticket_id} className="hover:bg-primary-600/50 transition">
                     <td className="px-6 py-4 font-medium text-white">{t.ticket_id}</td>
                     <td className="px-6 py-4">{t.nombre}</td>
+                    <td className="px-6 py-4">{t.apellidos || '-'}</td>
                     <td className="px-6 py-4">{t.dni}</td>
                     <td className="px-6 py-4">{t.region}</td>
                     <td className="px-6 py-4 font-mono">{t.monto_detectado || '-'}</td>
@@ -852,7 +896,7 @@ function AdminPage({ setIsAdmin }) {
             </div>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6 text-sm">
-                <div><p className="text-primary-400 mb-1">Participante</p><p className="font-medium text-white text-lg">{selectedTicket.nombre}</p></div>
+                <div><p className="text-primary-400 mb-1">Participante</p><p className="font-medium text-white text-lg">{selectedTicket.nombre} {selectedTicket.apellidos}</p></div>
                 <div><p className="text-primary-400 mb-1">DNI</p><p className="font-medium text-white text-lg">{selectedTicket.dni}</p></div>
                 <div><p className="text-primary-400 mb-1">Estado</p><p className="font-medium text-white text-lg">{selectedTicket.estado}</p></div>
                 <div><p className="text-primary-400 mb-1">Fecha</p><p className="font-medium text-white text-lg">{new Date(selectedTicket.fecha_registro).toLocaleString()}</p></div>
