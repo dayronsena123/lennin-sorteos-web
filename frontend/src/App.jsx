@@ -304,8 +304,8 @@ function HomePage() {
             <source src="/banner.mp4" type="video/mp4" />
             Tu navegador no soporta videos.
           </video>
-          {/* Improved gradient at bottom for smooth blend */}
-          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent"></div>
+          {/* Sutil degradado en el fondo del video */}
+          <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
         </div>
 
         {/* Content Section - Below Video */}
