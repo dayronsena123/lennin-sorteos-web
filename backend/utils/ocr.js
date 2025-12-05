@@ -9,7 +9,7 @@ export const processImageOCR = async (imagePath) => {
     const numbers = normalized.match(/(\d+(?:\.\d{1,2})?)/g);
 
     let monto = null;
-    let estado = 'revision'; // Por defecto a revisión
+    let estado = 'revision'; // TODOS los tickets van a revisión para aprobación manual del admin
 
     if (numbers) {
       const values = numbers.map(n => parseFloat(n));
@@ -18,22 +18,10 @@ export const processImageOCR = async (imagePath) => {
       const sortedByProximityTo10 = values.sort((a, b) => Math.abs(a - 10) - Math.abs(b - 10));
       const probableMonto = sortedByProximityTo10[0];
 
-      // VALIDACIÓN MEJORADA:
-      // Si el monto está entre 9.50 y 10.50 → Válido (va a revisión manual)
-      if (probableMonto >= 9.50 && probableMonto <= 10.50) {
-        monto = probableMonto;
-        estado = 'revision'; // Admin debe verificar que sea real
-      }
-      // Si el monto es MENOR a 9.50 → RECHAZADO AUTOMÁTICO
-      else if (probableMonto < 9.50) {
-        monto = probableMonto;
-        estado = 'rechazado'; // Monto insuficiente
-      }
-      // Si el monto es MAYOR a 10.50 → Revisión (puede ser válido con propina)
-      else if (probableMonto > 10.50) {
-        monto = probableMonto;
-        estado = 'revision'; // Puede ser válido (ej: 10 + propina)
-      }
+      // Guardar el monto detectado, pero SIEMPRE en estado 'revision'
+      // El admin decidirá manualmente si aprobar o rechazar
+      monto = probableMonto;
+      estado = 'revision';
     }
 
     return { monto, estado, confianza: 'media' };

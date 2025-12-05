@@ -14,7 +14,7 @@ router.post('/', upload.single('comprobante'), async (req, res) => {
     if (!/^[0-9]{8}$/.test(dni)) return res.status(400).json({ error: 'DNI inválido' });
     if (!/^[0-9]{9}$/.test(whatsapp)) return res.status(400).json({ error: 'WhatsApp inválido' });
 
-    const ticketId = generateTicketID();
+    const ticketId = await generateTicketID();
     const imagePath = req.file.path;
     const ocr = await processImageOCR(imagePath);
     const comprobanteUrl = `/uploads/${req.file.filename}`;

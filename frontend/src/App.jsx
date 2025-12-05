@@ -582,8 +582,13 @@ function RegisterPage() {
               <label htmlFor="terms" className="text-xs md:text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
             </div>
 
-            <button onClick={handleSubmit} disabled={loading} className="w-full py-3 md:py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-base md:text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1">
-              {loading ? 'ENVIANDO...' : 'ENVIAR REGISTRO'}
+            <button onClick={handleSubmit} disabled={loading} className="w-full py-3 md:py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-base md:text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1 relative overflow-hidden">
+              {loading ? (
+                <div className="flex items-center justify-center gap-3">
+                  <div className="animate-spin rounded-full h-6 w-6 border-4 border-primary-900 border-t-transparent"></div>
+                  <span>PROCESANDO...</span>
+                </div>
+              ) : 'ENVIAR REGISTRO'}
             </button>
           </div>
         </div>
@@ -608,15 +613,23 @@ function RegisterPage() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={() => setShowModal(null)}>
           <div className="bg-primary-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center border border-primary-600 relative overflow-hidden" onClick={e => e.stopPropagation()}>
-            <div className="absolute top-0 left-0 w-full h-2 bg-green-500"></div>
-            <div className="w-20 h-20 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="text-green-400" size={40} />
+            <div className="absolute top-0 left-0 w-full h-2 bg-yellow-500"></div>
+            <div className="w-20 h-20 bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="text-yellow-400" size={40} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">¡Registro Exitoso!</h3>
-            <p className="text-primary-300 mb-8">Tu ticket ha sido registrado correctamente.</p>
-            <div className="bg-primary-900 p-6 rounded-2xl mb-8 border border-primary-700">
+            <h3 className="text-2xl font-bold text-white mb-2">¡Ticket Generado!</h3>
+            <p className="text-primary-300 mb-4">Tu ticket ha sido creado exitosamente.</p>
+            <div className="bg-primary-900 p-6 rounded-2xl mb-6 border border-primary-700">
               <p className="text-xs text-primary-400 uppercase tracking-widest mb-2">Tu código de ticket</p>
               <p className="text-3xl font-mono font-bold text-secondary-400 tracking-wider">{showModal.ticket_id}</p>
+            </div>
+            <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-4 mb-6">
+              <p className="text-yellow-300 text-sm font-medium">
+                ⚠️ Tu ticket está <span className="font-bold">Pendiente de Revisión</span>
+              </p>
+              <p className="text-yellow-400/80 text-xs mt-2">
+                El administrador verificará tu comprobante y aprobará tu participación
+              </p>
             </div>
             <button onClick={() => setShowModal(null)} className="w-full py-3 bg-white text-primary-900 rounded-xl font-bold hover:bg-gray-100 transition">ENTENDIDO</button>
           </div>
