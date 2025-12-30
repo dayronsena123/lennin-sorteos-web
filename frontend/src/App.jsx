@@ -314,28 +314,27 @@ function HomePage() {
 
             {/* Restored Text Content */}
             <div className="mb-10 animate-fade-in-up">
-              <div className="inline-block mb-4 px-6 py-2 rounded-full bg-accent-600/20 border border-accent-500/50 text-accent-400 font-bold tracking-wider text-sm md:text-base animate-pulse">
-                ¡GRAN SORTEO 2025!
+              <div className="inline-block mb-4 px-6 py-2 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 font-bold tracking-wider text-sm md:text-base">
+                ¡SORTEO FINALIZADO!
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-xl">
-                GANA <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-yellow-200">3 LAPTOPS</span>,<br />
-                1 CELULAR <span className="text-secondary-400">INFINIX G30 PRO</span>
+                GRACIAS POR <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-yellow-200">PARTICIPAR</span>
               </h1>
               <p className="text-xl md:text-3xl text-primary-200 mb-4 max-w-3xl mx-auto font-medium">
-                Fecha del Sorteo: <span className="text-white font-bold">24 de Diciembre</span>
+                El sorteo se realizó el <span className="text-white font-bold">24 de Diciembre</span>
               </p>
               <p className="text-lg md:text-xl text-primary-300">
-                Transmisión en vivo vía Facebook
+                ¡Ya tenemos a los ganadores!
               </p>
             </div>
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link to="/participar" className="px-12 py-5 bg-secondary-500 text-primary-900 rounded-full font-black text-2xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-3 animate-bounce-subtle">
-                <Ticket size={28} /> COMPRAR TICKET (S/ 10)
+              <Link to="/ganadores" className="px-12 py-5 bg-secondary-500 text-primary-900 rounded-full font-black text-2xl shadow-xl shadow-secondary-500/30 hover:scale-105 hover:bg-secondary-400 transition duration-300 flex items-center justify-center gap-3 animate-bounce-subtle">
+                <Gift size={28} /> VER GANADORES
               </Link>
-              <Link to="/reglas" className="px-10 py-4 bg-primary-800 text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
-                VER REGLAS
+              <Link to="/mis-tickets" className="px-10 py-4 bg-primary-800 text-white border border-primary-500 rounded-full font-bold text-xl hover:bg-primary-700 transition duration-300">
+                MIS TICKETS
               </Link>
             </div>
 
@@ -442,16 +441,34 @@ function RulesPage() {
 function WinnersPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-      <div className="bg-primary-800 p-12 rounded-3xl shadow-2xl border border-primary-600">
+      <div className="bg-primary-800 p-8 md:p-12 rounded-3xl shadow-2xl border border-primary-600">
         <div className="inline-block p-4 bg-primary-700 rounded-full mb-6">
           <Gift size={48} className="text-secondary-400" />
         </div>
-        <h2 className="text-4xl font-bold text-white mb-4">Ganadores del Sorteo</h2>
+
+        <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-secondary-400 to-yellow-300 mb-8 animate-pulse">
+          GANADORES DEL SORTEO NAVIDEÑO
+        </h2>
+
+        <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-secondary-500/50 mb-8">
+          <video
+            controls
+            autoPlay
+            className="w-full h-full object-contain"
+            poster="/lenninsorteoslogo.jpg"
+          >
+            <source src="/video-ganadores.mp4" type="video/mp4" />
+            Tu navegador no soporta el elemento de video.
+          </video>
+        </div>
+
         <p className="text-xl text-primary-200 mb-8">
-          El sorteo se realizará el <span className="text-secondary-400 font-bold">24 de Diciembre de 2025</span>.
+          ¡Muchas felicidades a todos los ganadores! <br />
+          Gracias por confiar en <span className="text-secondary-400 font-bold">Lennin Sorteos</span>.
         </p>
+
         <div className="p-6 bg-primary-900/50 rounded-xl border border-primary-700 max-w-md mx-auto">
-          <p className="text-primary-400 font-medium">Lista de ganadores pendiente...</p>
+          <p className="text-primary-400 font-medium">Nos pondremos en contacto con los ganadores para la entrega de premios.</p>
         </div>
       </div>
     </div>
@@ -459,182 +476,21 @@ function WinnersPage() {
 }
 
 function RegisterPage() {
-  const [formData, setFormData] = useState({ nombre: '', apellidos: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
-  const [comprobante, setComprobante] = useState(null);
-  const [comprobantePreview, setComprobantePreview] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState(null);
-
-  const regiones = ['Amazonas', 'Ancash', 'Apurimac', 'Arequipa', 'Ayacucho', 'Cajamarca', 'Callao', 'Cusco', 'Huancavelica', 'Huanuco', 'Ica', 'Junin', 'La Libertad', 'Lambayeque', 'Lima', 'Loreto', 'Madre de Dios', 'Moquegua', 'Pasco', 'Piura', 'Puno', 'San Martin', 'Tacna', 'Tumbes', 'Ucayali'];
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) return alert('Solo JPG/PNG/WEBP');
-    if (file.size > 5 * 1024 * 1024) return alert('Max 5MB');
-    setComprobante(file);
-    const reader = new FileReader();
-    reader.onloadend = () => setComprobantePreview(reader.result);
-    reader.readAsDataURL(file);
-  };
-
-  const handleSubmit = async () => {
-    if (!formData.nombre || !formData.apellidos || !formData.dni || !formData.whatsapp || !formData.region || !comprobante || !formData.aceptaTerminos) return alert('Completa todos los campos');
-    if (!/^[0-9]{8}$/.test(formData.dni)) return alert('DNI inválido');
-    if (!/^[0-9]{9}$/.test(formData.whatsapp)) return alert('WhatsApp inválido');
-
-    setLoading(true);
-    try {
-      const fd = new FormData();
-      fd.append('nombre', formData.nombre);
-      fd.append('apellidos', formData.apellidos);
-      fd.append('dni', formData.dni);
-      fd.append('whatsapp', formData.whatsapp);
-      fd.append('region', formData.region);
-      fd.append('comprobante', comprobante);
-      const res = await axios.post(`${API_URL}/tickets`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
-      setShowModal(res.data);
-      setFormData({ nombre: '', apellidos: '', dni: '', whatsapp: '', region: '', aceptaTerminos: false });
-      setComprobante(null); setComprobantePreview(null);
-    } catch (err) {
-      alert('Error al enviar: ' + (err.response?.data?.error || err.message));
-    } finally { setLoading(false); }
-  };
-
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-
-      {/* Imagen "Cómo Participar" - Visible en móvil arriba */}
-      <div className="lg:hidden mb-8 flex justify-center">
-        <div className="bg-primary-800 p-4 rounded-3xl border border-primary-600 shadow-xl max-w-sm w-full">
-          <img src="/como-participar.png" alt="Cómo participar" className="w-full rounded-2xl shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x600?text=Instrucciones"; }} />
+    <div className="max-w-4xl mx-auto px-4 py-16 text-center">
+      <div className="bg-primary-800 p-12 rounded-3xl shadow-2xl border border-primary-600">
+        <div className="inline-block p-4 bg-red-900/50 rounded-full mb-6">
+          <AlertCircle size={48} className="text-red-400" />
         </div>
+        <h2 className="text-3xl font-bold text-white mb-4">Sorteo Finalizado</h2>
+        <p className="text-xl text-primary-200 mb-8">
+          El periodo de registro de tickets ha concluido. <br />
+          ¡Gracias a todos por participar!
+        </p>
+        <Link to="/ganadores" className="inline-flex items-center gap-2 px-8 py-4 bg-secondary-500 text-primary-900 rounded-xl font-bold hover:bg-secondary-400 transition">
+          <Gift size={24} /> VER GANADORES
+        </Link>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-
-        {/* Columna Izquierda: Cómo Participar - Solo desktop */}
-        <div className="hidden lg:block sticky top-24">
-          <div className="bg-primary-800 p-4 rounded-3xl border border-primary-600 shadow-xl transform hover:scale-105 transition duration-500">
-            <img src="/como-participar.png" alt="Cómo participar" className="w-full rounded-2xl shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/400x600?text=Instrucciones"; }} />
-          </div>
-        </div>
-
-        {/* Columna Central: Formulario */}
-        <div className="bg-primary-700 p-6 md:p-8 rounded-3xl shadow-2xl border border-primary-600 relative z-10">
-          <div className="absolute -top-6 -right-6 bg-accent-500 text-white w-20 h-20 rounded-full flex items-center justify-center font-black text-xl shadow-lg transform rotate-12 z-20">
-            S/ 10
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">Registra tu Ticket</h2>
-          <p className="text-primary-300 mb-6 md:mb-8 text-center text-sm md:text-base">Completa tus datos para participar</p>
-
-          <div className="space-y-4 md:space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Nombres</label>
-                <input name="nombre" value={formData.nombre} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="Ej. Juan" />
-              </div>
-              <div>
-                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Apellidos</label>
-                <input name="apellidos" value={formData.apellidos} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="Ej. Pérez" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">DNI</label>
-                <input name="dni" maxLength={8} value={formData.dni} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="8 dígitos" />
-              </div>
-              <div>
-                <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">WhatsApp</label>
-                <input name="whatsapp" maxLength={9} value={formData.whatsapp} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition placeholder-primary-500 text-sm md:text-base" placeholder="9 dígitos" />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs md:text-sm font-bold text-primary-300 mb-2 uppercase tracking-wide">Región</label>
-              <select name="region" value={formData.region} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl bg-primary-800 border border-primary-600 text-white focus:ring-2 focus:ring-secondary-500 outline-none transition text-sm md:text-base">
-                <option value="" className="bg-primary-800">Selecciona tu región</option>
-                {regiones.map(r => <option key={r} value={r} className="bg-primary-800">{r}</option>)}
-              </select>
-            </div>
-
-            <div className="border-2 border-dashed border-primary-500 rounded-2xl p-6 md:p-8 text-center hover:border-secondary-500 hover:bg-primary-600/50 transition cursor-pointer group" onClick={() => document.getElementById('file').click()}>
-              <input id="file" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
-              {comprobantePreview ? (
-                <img src={comprobantePreview} alt="preview" className="max-h-48 mx-auto rounded-lg shadow-lg" />
-              ) : (
-                <div className="text-primary-400 group-hover:text-secondary-400 transition">
-                  <Upload className="mx-auto mb-3" size={32} />
-                  <p className="font-medium text-sm md:text-base">Clic para subir foto del comprobante</p>
-                  <p className="text-xs mt-2 opacity-70">JPG, PNG, WEBP (Max 5MB)</p>
-                </div>
-              )}
-            </div>
-
-            <div className="flex items-center gap-3 p-3 md:p-4 bg-primary-800/50 rounded-xl">
-              <input type="checkbox" id="terms" name="aceptaTerminos" checked={formData.aceptaTerminos} onChange={handleInputChange} className="w-5 h-5 text-secondary-500 rounded focus:ring-secondary-500 bg-primary-700 border-primary-500" />
-              <label htmlFor="terms" className="text-xs md:text-sm text-primary-200">Acepto los términos y condiciones del sorteo</label>
-            </div>
-
-            <button onClick={handleSubmit} disabled={loading} className="w-full py-3 md:py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-primary-900 rounded-xl font-black text-base md:text-lg shadow-lg hover:shadow-xl hover:opacity-90 transition disabled:opacity-50 transform hover:-translate-y-1 relative overflow-hidden">
-              {loading ? (
-                <div className="flex items-center justify-center gap-3">
-                  <div className="animate-spin rounded-full h-6 w-6 border-4 border-primary-900 border-t-transparent"></div>
-                  <span>PROCESANDO...</span>
-                </div>
-              ) : 'ENVIAR REGISTRO'}
-            </button>
-          </div>
-        </div>
-
-        {/* Columna Derecha: QR Yape - Solo desktop */}
-        <div className="hidden lg:flex flex-col items-center sticky top-24 gap-4">
-          <div className="bg-white p-4 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500 relative">
-            <img src="/qr-yape.png" alt="QR Yape" className="w-full max-w-xs rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
-          </div>
-        </div>
-
-      </div>
-
-      {/* QR Yape - Visible en móvil abajo */}
-      <div className="lg:hidden mt-8 flex justify-center">
-        <div className="bg-white p-4 rounded-3xl shadow-2xl max-w-sm w-full">
-          <img src="/qr-yape.png" alt="QR Yape" className="w-full rounded-xl" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/300x400?text=QR+Yape"; }} />
-        </div>
-      </div>
-
-
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={() => setShowModal(null)}>
-          <div className="bg-primary-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center border border-primary-600 relative overflow-hidden" onClick={e => e.stopPropagation()}>
-            <div className="absolute top-0 left-0 w-full h-2 bg-yellow-500"></div>
-            <div className="w-20 h-20 bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="text-yellow-400" size={40} />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">¡Ticket Generado!</h3>
-            <p className="text-primary-300 mb-4">Tu ticket ha sido creado exitosamente.</p>
-            <div className="bg-primary-900 p-6 rounded-2xl mb-6 border border-primary-700">
-              <p className="text-xs text-primary-400 uppercase tracking-widest mb-2">Tu código de ticket</p>
-              <p className="text-3xl font-mono font-bold text-secondary-400 tracking-wider">{showModal.ticket_id}</p>
-            </div>
-            <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-4 mb-6">
-              <p className="text-yellow-300 text-sm font-medium">
-                ⚠️ Tu ticket está <span className="font-bold">Pendiente de Revisión</span>
-              </p>
-              <p className="text-yellow-400/80 text-xs mt-2">
-                El administrador verificará tu comprobante y aprobará tu participación
-              </p>
-            </div>
-            <button onClick={() => setShowModal(null)} className="w-full py-3 bg-white text-primary-900 rounded-xl font-bold hover:bg-gray-100 transition">ENTENDIDO</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
