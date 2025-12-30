@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, LogOut, Eye } from 'lucide-react';
+import { Menu, X, LogOut, Eye, Facebook, Instagram } from 'lucide-react';
+
+const TikTokIcon = ({ size = 24, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.394 6.394 0 0 0-5.394 9.365 6.394 6.394 0 0 0 10.964-2.413v-8.25a8.32 8.32 0 0 0 3.663 1.41V6.686z" />
+    </svg>
+);
 
 function Header({ isAdmin, setIsAdmin }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,7 +53,7 @@ function Header({ isAdmin, setIsAdmin }) {
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2
+                                className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2
                   ${isActive(link.path)
                                         ? 'bg-secondary-500 text-primary-900 shadow-lg shadow-secondary-500/20 scale-105'
                                         : 'text-primary-200 hover:text-white hover:bg-primary-800'
@@ -56,6 +62,14 @@ function Header({ isAdmin, setIsAdmin }) {
                                 {link.name}
                             </Link>
                         ))}
+
+                        {/* Social Icons */}
+                        <div className="flex items-center gap-2 ml-2 border-l border-primary-700 pl-4">
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-[#1877F2] rounded-full transition"><Facebook size={18} /></a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] rounded-full transition"><Instagram size={18} /></a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-black rounded-full transition"><TikTokIcon size={18} /></a>
+                        </div>
+
                         {isAdmin ? (
                             <button onClick={handleLogout} className="ml-4 px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold transition shadow-lg flex items-center gap-2">
                                 <LogOut size={18} /> Salir
