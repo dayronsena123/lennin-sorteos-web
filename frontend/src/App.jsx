@@ -451,7 +451,7 @@ function WinnersPage() {
 
         <p className="text-lg md:text-xl text-primary-200 mb-8">
           ¡Muchas felicidades a todos los ganadores! <br />
-          <span className="text-green-400 font-bold text-xl md:text-2xl mt-2 block">¡Premios Entregados con Éxito! ✅</span>
+          <span className="text-green-400 font-bold text-xl md:text-2xl mt-2 block">¡Premios Entregados con Éxito!</span>
         </p>
 
         <div className="p-4 md:p-6 bg-primary-900/50 rounded-xl border border-primary-700 max-w-md mx-auto">
