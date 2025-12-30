@@ -435,43 +435,7 @@ function RulesPage() {
         <p>5. Conserva tu comprobante físico o digital para reclamar el premio.</p>
       </div>
     </div>
-  );
-}
-
-function WinnersPage() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-      <div className="bg-primary-800 p-8 md:p-12 rounded-3xl shadow-2xl border border-primary-600">
-        <div className="inline-block p-4 bg-primary-700 rounded-full mb-6">
-          <Gift size={48} className="text-secondary-400" />
-        </div>
-
-        <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-secondary-400 to-yellow-300 mb-8 animate-pulse">
-          GANADORES DEL SORTEO NAVIDEÑO
-        </h2>
-
-        <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-secondary-500/50 mb-8">
-          <video
-            controls
-            autoPlay
-            className="w-full h-full object-contain"
-            poster="/lenninsorteoslogo.jpg"
-          >
-            <source src="/video-ganadores.mp4" type="video/mp4" />
-            Tu navegador no soporta el elemento de video.
-          </video>
-        </div>
-
-        <p className="text-xl text-primary-200 mb-8">
-          ¡Muchas felicidades a todos los ganadores! <br />
-          Gracias por confiar en <span className="text-secondary-400 font-bold">Lennin Sorteos</span>.
-        </p>
-
-        <div className="p-6 bg-primary-900/50 rounded-xl border border-primary-700 max-w-md mx-auto">
-          <p className="text-primary-400 font-medium">Nos pondremos en contacto con los ganadores para la entrega de premios.</p>
-        </div>
-      </div>
-    </div>
+    </div >
   );
 }
 
