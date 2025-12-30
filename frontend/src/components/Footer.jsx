@@ -1,4 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Facebook, Instagram } from 'lucide-react';
+
+const TikTokIcon = ({ size = 24, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.394 6.394 0 0 0-5.394 9.365 6.394 6.394 0 0 0 10.964-2.413v-8.25a8.32 8.32 0 0 0 3.663 1.41V6.686z" />
+    </svg>
+);
 
 function Footer() {
     return (
@@ -21,9 +29,31 @@ function Footer() {
                         </p>
                     </div>
 
+                    {/* Social Media Icons */}
+                    <div className="flex gap-6 mb-8">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-[#1877F2] hover:scale-110 transition duration-300 shadow-lg group">
+                            <Facebook size={24} />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:scale-110 transition duration-300 shadow-lg group">
+                            <Instagram size={24} />
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-black hover:border hover:border-white/20 hover:scale-110 transition duration-300 shadow-lg group">
+                            <TikTokIcon size={24} />
+                        </a>
+                    </div>
+
+                    {/* Navigation Links */}
+                    <div className="flex flex-wrap justify-center gap-6 mb-10 text-primary-300 font-medium text-sm">
+                        <Link to="/" className="hover:text-secondary-400 transition">INICIO</Link>
+                        <Link to="/reglas" className="hover:text-secondary-400 transition">REGLAS</Link>
+                        <Link to="/participar" className="hover:text-secondary-400 transition">PARTICIPAR</Link>
+                        <Link to="/ganadores" className="hover:text-secondary-400 transition">GANADORES</Link>
+                        <Link to="/contacto" className="hover:text-secondary-400 transition">CONTACTO</Link>
+                    </div>
+
                     {/* Copyright */}
                     <p className="text-primary-400 text-xs md:text-sm">© 2025 <span className="text-white font-bold">Lennin Sorteos</span>. Todos los derechos reservados.</p>
-                    <p className="text-primary-500 text-xs">
+                    <p className="text-primary-500 text-xs mt-2">
                         Desarrollado por <span className="text-secondary-400 font-bold">Dayron</span> |
                         <a href="https://www.lenninsorteos.com" className="text-secondary-400 hover:text-secondary-300 ml-1 font-bold hover:underline transition">lenninsorteos.com</a>
                     </p>
