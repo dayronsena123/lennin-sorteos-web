@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Ticket, Gift, FileText, Phone, LogOut, Eye } from 'lucide-react';
+import { Menu, X, LogOut, Eye } from 'lucide-react';
 
 function Header({ isAdmin, setIsAdmin }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,12 +15,12 @@ function Header({ isAdmin, setIsAdmin }) {
     };
 
     const navLinks = [
-        { name: 'Inicio', path: '/', icon: <Home size={18} /> },
-        { name: 'Participar', path: '/participar', icon: <Ticket size={18} /> },
-        { name: 'Mis Tickets', path: '/mis-tickets', icon: <Ticket size={18} /> },
-        { name: 'Ganadores', path: '/ganadores', icon: <Gift size={18} /> },
-        { name: 'Reglas', path: '/reglas', icon: <FileText size={18} /> },
-        { name: 'Contacto', path: '/contacto', icon: <Phone size={18} /> },
+        { name: 'Inicio', path: '/' },
+        { name: 'Participar', path: '/participar' },
+        { name: 'Mis Tickets', path: '/mis-tickets' },
+        { name: 'Ganadores', path: '/ganadores' },
+        { name: 'Reglas', path: '/reglas' },
+        { name: 'Contacto', path: '/contacto' },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -47,13 +47,12 @@ function Header({ isAdmin, setIsAdmin }) {
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2
+                                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2
                   ${isActive(link.path)
                                         ? 'bg-secondary-500 text-primary-900 shadow-lg shadow-secondary-500/20 scale-105'
                                         : 'text-primary-200 hover:text-white hover:bg-primary-800'
                                     }`}
                             >
-                                {link.icon}
                                 {link.name}
                             </Link>
                         ))}
@@ -93,7 +92,6 @@ function Header({ isAdmin, setIsAdmin }) {
                                     }`}
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                {link.icon}
                                 {link.name}
                             </Link>
                         ))}

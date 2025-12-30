@@ -1,10 +1,12 @@
 import React from 'react';
 import { Gift } from 'lucide-react';
+import ConfettiEffect from '../components/ConfettiEffect';
 
 function WinnersPage() {
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 md:py-16 text-center">
-            <div className="bg-primary-800 p-6 md:p-12 rounded-3xl shadow-2xl border border-primary-600">
+        <div className="max-w-4xl mx-auto px-4 py-8 md:py-16 text-center relative">
+            <ConfettiEffect />
+            <div className="bg-primary-800 p-6 md:p-12 rounded-3xl shadow-2xl border border-primary-600 relative z-10">
                 <div className="inline-block p-4 bg-primary-700 rounded-full mb-6">
                     <Gift size={48} className="text-secondary-400" />
                 </div>
