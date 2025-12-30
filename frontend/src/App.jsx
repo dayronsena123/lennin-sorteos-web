@@ -435,7 +435,7 @@ function RulesPage() {
         <p>5. Conserva tu comprobante físico o digital para reclamar el premio.</p>
       </div>
     </div>
-    </div >
+
   );
 }
 
