@@ -65,9 +65,9 @@ function Header({ isAdmin, setIsAdmin }) {
 
                         {/* Social Icons */}
                         <div className="flex items-center gap-2 ml-2 border-l border-primary-700 pl-4">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-[#1877F2] rounded-full transition"><Facebook size={18} /></a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] rounded-full transition"><Instagram size={18} /></a>
-                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-black rounded-full transition"><TikTokIcon size={18} /></a>
+                            <a href="https://www.facebook.com/share/1Ca6WoigVf/" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-[#1877F2] rounded-full transition"><Facebook size={18} /></a>
+                            <a href="https://www.instagram.com/lenninbenito?igsh=ZjYxMTY5aXg5Znhw" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] rounded-full transition"><Instagram size={18} /></a>
+                            <a href="https://www.tiktok.com/@lenninbeno?_r=1&_t=ZS-91XnYAseb2N" target="_blank" rel="noopener noreferrer" className="p-2 text-primary-300 hover:text-white hover:bg-black rounded-full transition"><TikTokIcon size={18} /></a>
                         </div>
 
                         {isAdmin ? (

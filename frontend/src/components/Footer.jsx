@@ -31,13 +31,13 @@ function Footer() {
 
                     {/* Social Media Icons */}
                     <div className="flex gap-6 mb-8">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-[#1877F2] hover:scale-110 transition duration-300 shadow-lg group">
+                        <a href="https://www.facebook.com/share/1Ca6WoigVf/" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-[#1877F2] hover:scale-110 transition duration-300 shadow-lg group">
                             <Facebook size={24} />
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:scale-110 transition duration-300 shadow-lg group">
+                        <a href="https://www.instagram.com/lenninbenito?igsh=ZjYxMTY5aXg5Znhw" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:scale-110 transition duration-300 shadow-lg group">
                             <Instagram size={24} />
                         </a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-black hover:border hover:border-white/20 hover:scale-110 transition duration-300 shadow-lg group">
+                        <a href="https://www.tiktok.com/@lenninbeno?_r=1&_t=ZS-91XnYAseb2N" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-800 rounded-full text-white hover:bg-black hover:border hover:border-white/20 hover:scale-110 transition duration-300 shadow-lg group">
                             <TikTokIcon size={24} />
                         </a>
                     </div>
