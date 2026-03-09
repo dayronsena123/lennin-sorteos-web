@@ -15,7 +15,7 @@ function HomePage() {
                         playsInline
                         className="w-full h-full object-cover"
                     >
-                        <source src="/banner.mp4?v=2" type="video/mp4" />
+                        <source src="/banner.mp4?v=3" type="video/mp4" />
                         Tu navegador no soporta videos.
                     </video>
                     <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
