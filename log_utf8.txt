@@ -1,0 +1,15 @@
+﻿b32f30832c83a6d4cae431c4faee40d7b1bd7c71 | Polish: Remove SnowEffect, clean emojis, add Survivors button for past raffle
+7d686735810db1949ca9f8b10d2ab5620c10f5bf | Update HomePage styles: Responsive fonts, flash animation for Delivered badge, Red Finalized badge, and updated prize sections
+0c874e7db4afbfcbaf1fcc34d0c0282628d101cf | Update HomePage: Show past raffle prizes (Laptop, Phone) below new prizes
+e27f49c4688255d7bbcba11fc1ebe39dafb39150 | Update raffle: March 1st date, Mototaxi prize, restore registration form
+e00b0d7c37def7fd66020d81b4b24e5201c54c4a | Update social media links
+fb760b84eb29166ead4bfacce66773f63a4e5dfa | Add social icons to header
+bb6160e184d610666e6025949c44d108080f0b3d | Restore footer social icons and links
+016b0c70bf693681ff88231396e1ece34c9fdc3c | Design update: remove navbar icons and add confetti to winners page
+c74249c41814e68a091114c629b31afc2ead0247 | Refactor: Split App.jsx into modular components and pages
+481c47fba4cbb7584a16115c1250b72adfd106ca | User update: remove checkmark emoji
+bcd837f60b0ca23f24759fcb8725e540b7328332 | Restore missing WinnersPage component
+5b363170b0c4e9b971e6cad70c532cc3faca3c62 | Fix syntax error: remove extra closing div
+3bed71ba563c61cc318f91db342397988ce77bf1 | Fix syntax error and mobile responsiveness
+35d41b37f7e4464d1ec42d90c191a0021b3444e2 | Update raffle status: winners video, disable registration, update home
+b232fb2ed9a86de9c9f79ac8c94ec13ce2bf570c | feat: sistema de tickets aleatorios TK-000001 a TK-000800 + migración completa

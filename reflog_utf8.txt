@@ -1,0 +1,31 @@
+﻿016b0c7 HEAD@{0}: reset: moving to origin/main
+b32f308 HEAD@{1}: reset: moving to b32f308
+016b0c7 HEAD@{2}: checkout: moving from main to main
+016b0c7 HEAD@{3}: reset: moving to 016b0c70bf693681ff88231396e1ece34c9fdc3c
+b32f308 HEAD@{4}: reset: moving to HEAD~1
+cea0e97 HEAD@{5}: commit: Feat: Galeria de ganadores Sorteo 2 (mototaxi + efectivo) y sistema dinamico de sorteos
+b32f308 HEAD@{6}: reset: moving to HEAD
+b32f308 HEAD@{7}: reset: moving to HEAD
+b32f308 HEAD@{8}: commit: Polish: Remove SnowEffect, clean emojis, add Survivors button for past raffle
+7d68673 HEAD@{9}: commit: Update HomePage styles: Responsive fonts, flash animation for Delivered badge, Red Finalized badge, and updated prize sections
+0c874e7 HEAD@{10}: commit: Update HomePage: Show past raffle prizes (Laptop, Phone) below new prizes
+e27f49c HEAD@{11}: commit: Update raffle: March 1st date, Mototaxi prize, restore registration form
+e00b0d7 HEAD@{12}: commit: Update social media links
+fb760b8 HEAD@{13}: commit: Add social icons to header
+bb6160e HEAD@{14}: commit: Restore footer social icons and links
+016b0c7 HEAD@{15}: commit: Design update: remove navbar icons and add confetti to winners page
+c74249c HEAD@{16}: commit: Refactor: Split App.jsx into modular components and pages
+481c47f HEAD@{17}: commit: User update: remove checkmark emoji
+bcd837f HEAD@{18}: commit: Restore missing WinnersPage component
+5b36317 HEAD@{19}: commit: Fix syntax error: remove extra closing div
+3bed71b HEAD@{20}: commit: Fix syntax error and mobile responsiveness
+35d41b3 HEAD@{21}: commit: Update raffle status: winners video, disable registration, update home
+b232fb2 HEAD@{22}: commit: feat: sistema de tickets aleatorios TK-000001 a TK-000800 + migración completa
+feee1a2 HEAD@{23}: commit: Optimización SEO y UX: Twitter Cards, sitemap actualizado, favicons optimizados y degradado banner reducido
+29f8674 HEAD@{24}: commit: Verisón mejorda
+941fdb3 HEAD@{25}: commit: Final: Footer premium + Responsive perfecto + Gradient mejorado + Admin config
+accee19 HEAD@{26}: reset: moving to accee19
+accee19 HEAD@{27}: commit: Final: Flip Ticket Man
+66cfa51 HEAD@{28}: commit: UI Final: Header limpio y Ticket Man derecha
+1321ba1 HEAD@{29}: commit: Ajustes UI: Home layout y Ticket Man
+

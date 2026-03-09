@@ -1,0 +1,166 @@
+﻿commit b32f30832c83a6d4cae431c4faee40d7b1bd7c71
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Jan 26 23:57:31 2026 -0500
+
+    Polish: Remove SnowEffect, clean emojis, add Survivors button for past raffle
+
+M	frontend/public/Dinero.jpg
+M	frontend/public/Mototaxi.jpg
+M	frontend/src/App.jsx
+M	frontend/src/pages/HomePage.jsx
+
+commit 7d686735810db1949ca9f8b10d2ab5620c10f5bf
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Jan 26 23:15:29 2026 -0500
+
+    Update HomePage styles: Responsive fonts, flash animation for Delivered badge, Red Finalized badge, and updated prize sections
+
+M	frontend/public/Dinero.jpg
+M	frontend/public/Mototaxi.jpg
+M	frontend/src/index.css
+M	frontend/src/pages/HomePage.jsx
+
+commit 0c874e7db4afbfcbaf1fcc34d0c0282628d101cf
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Jan 26 22:50:08 2026 -0500
+
+    Update HomePage: Show past raffle prizes (Laptop, Phone) below new prizes
+
+M	frontend/public/Mototaxi.jpg
+M	frontend/src/pages/HomePage.jsx
+
+commit e27f49c4688255d7bbcba11fc1ebe39dafb39150
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Jan 26 22:40:15 2026 -0500
+
+    Update raffle: March 1st date, Mototaxi prize, restore registration form
+
+A	frontend/public/Dinero.jpg
+A	frontend/public/Mototaxi.jpg
+M	frontend/public/banner.mp4
+M	frontend/src/pages/HomePage.jsx
+M	frontend/src/pages/RegisterPage.jsx
+M	frontend/src/pages/RulesPage.jsx
+
+commit e00b0d7c37def7fd66020d81b4b24e5201c54c4a
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Tue Dec 30 00:13:39 2025 -0500
+
+    Update social media links
+
+M	frontend/src/components/Footer.jsx
+M	frontend/src/components/Header.jsx
+
+commit fb760b84eb29166ead4bfacce66773f63a4e5dfa
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Tue Dec 30 00:06:42 2025 -0500
+
+    Add social icons to header
+
+M	frontend/src/components/Header.jsx
+
+commit bb6160e184d610666e6025949c44d108080f0b3d
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Tue Dec 30 00:02:30 2025 -0500
+
+    Restore footer social icons and links
+
+M	frontend/src/components/Footer.jsx
+
+commit 016b0c70bf693681ff88231396e1ece34c9fdc3c
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 23:46:51 2025 -0500
+
+    Design update: remove navbar icons and add confetti to winners page
+
+M	frontend/package-lock.json
+M	frontend/package.json
+A	frontend/src/components/ConfettiEffect.jsx
+M	frontend/src/components/Header.jsx
+M	frontend/src/pages/WinnersPage.jsx
+
+commit c74249c41814e68a091114c629b31afc2ead0247
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 23:41:04 2025 -0500
+
+    Refactor: Split App.jsx into modular components and pages
+
+M	frontend/src/App.jsx
+A	frontend/src/components/FloatingWhatsApp.jsx
+A	frontend/src/components/Footer.jsx
+A	frontend/src/components/Header.jsx
+A	frontend/src/components/SnowEffect.jsx
+A	frontend/src/config.js
+A	frontend/src/pages/AdminPage.jsx
+A	frontend/src/pages/ContactPage.jsx
+A	frontend/src/pages/HomePage.jsx
+A	frontend/src/pages/MyTicketsPage.jsx
+A	frontend/src/pages/RegisterPage.jsx
+A	frontend/src/pages/RulesPage.jsx
+A	frontend/src/pages/WinnersPage.jsx
+
+commit 481c47fba4cbb7584a16115c1250b72adfd106ca
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 22:50:58 2025 -0500
+
+    User update: remove checkmark emoji
+
+M	frontend/src/App.jsx
+
+commit bcd837f60b0ca23f24759fcb8725e540b7328332
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 22:44:51 2025 -0500
+
+    Restore missing WinnersPage component
+
+M	frontend/src/App.jsx
+
+commit 5b363170b0c4e9b971e6cad70c532cc3faca3c62
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 22:38:54 2025 -0500
+
+    Fix syntax error: remove extra closing div
+
+M	frontend/src/App.jsx
+
+commit 3bed71ba563c61cc318f91db342397988ce77bf1
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 22:31:23 2025 -0500
+
+    Fix syntax error and mobile responsiveness
+
+M	frontend/src/App.jsx
+
+commit 35d41b37f7e4464d1ec42d90c191a0021b3444e2
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Mon Dec 29 22:22:11 2025 -0500
+
+    Update raffle status: winners video, disable registration, update home
+
+A	frontend/public/video-ganadores.mp4
+M	frontend/src/App.jsx
+
+commit b232fb2ed9a86de9c9f79ac8c94ec13ce2bf570c
+Author: dayronsena123 <dayronfrankvallesena661@gmail.com>
+Date:   Fri Dec 5 00:04:05 2025 -0500
+
+    feat: sistema de tickets aleatorios TK-000001 a TK-000800 + migración completa
+    
+    - Implementado generador de tickets aleatorios con formato TK-000XXX
+    - Sistema anti-duplicados con verificación en BD y retry logic
+    - Todos los tickets ahora van a estado 'revision' para aprobación manual
+    - Migrados todos los tickets existentes al nuevo formato
+    - Mejorada UX del frontend: spinner de carga y modal de pendiente
+    - Base de datos completamente verificada y actualizada
+    - Scripts de utilidades: migración, testing y verificación
+    - Sistema 100% funcional y listo para producción
+
+M	backend/routes/tickets.js
+A	backend/scripts/migrate_old_tickets.js
+A	backend/scripts/test_ticket_generation.js
+A	backend/scripts/update_rejected_tickets.js
+A	backend/scripts/verify_cloud_database.js
+A	backend/scripts/verify_system.js
+M	backend/utils/ocr.js
+M	backend/utils/ticketGenerator.js
+M	frontend/src/App.jsx

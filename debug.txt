@@ -1,0 +1,12 @@
+b32f308 HEAD@{0}: reset: moving to HEAD~1
+cea0e97 HEAD@{1}: commit: Feat: Galeria de ganadores Sorteo 2 (mototaxi + efectivo) y sistema dinamico de sorteos
+b32f308 HEAD@{2}: reset: moving to HEAD
+b32f308 HEAD@{3}: reset: moving to HEAD
+b32f308 HEAD@{4}: commit: Polish: Remove SnowEffect, clean emojis, add Survivors button for past raffle
+
+
+b32f308 Polish: Remove SnowEffect, clean emojis, add Survivors button for past raffle
+7d68673 Update HomePage styles: Responsive fonts, flash animation for Delivered badge, Red Finalized badge, and updated prize sections
+0c874e7 Update HomePage: Show past raffle prizes (Laptop, Phone) below new prizes
+e27f49c Update raffle: March 1st date, Mototaxi prize, restore registration form
+e00b0d7 Update social media links

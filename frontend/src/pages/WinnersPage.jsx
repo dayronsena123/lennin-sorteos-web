@@ -159,23 +159,28 @@ function WinnersPage() {
             {/* Modal lightbox */}
             {modalImg && (
                 <div
-                    className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 cursor-pointer"
+                    className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-pointer overflow-y-auto"
                     onClick={() => setModalImg(null)}
                 >
                     <button
-                        className="absolute top-4 right-4 md:top-6 md:right-6 bg-primary-800 hover:bg-primary-700 text-white rounded-full p-2 transition z-50"
+                        className="fixed top-4 right-4 md:top-6 md:right-6 bg-primary-800/80 hover:bg-primary-700 text-white rounded-full p-2 transition z-[70] shadow-lg"
                         onClick={() => setModalImg(null)}
                     >
                         <X size={28} />
                     </button>
-                    <div className="max-w-4xl w-full flex flex-col items-center justify-center mt-8 md:mt-0" onClick={e => e.stopPropagation()}>
+                    <div
+                        className="relative w-full max-w-4xl m-auto flex flex-col items-center justify-center py-10"
+                        onClick={e => e.stopPropagation()}
+                    >
                         <img
                             src={modalImg.src}
                             alt={modalImg.alt}
-                            className="max-w-full max-h-[75vh] md:max-h-[85vh] object-contain rounded-xl shadow-2xl border-4 border-white cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+                            className="w-auto max-w-full max-h-[75vh] md:max-h-[85vh] object-contain rounded-xl shadow-2xl border-2 md:border-4 border-white cursor-pointer hover:scale-[1.02] transition-transform duration-300"
                             onClick={() => setModalImg(null)}
                         />
-                        <p className="text-center text-white font-bold mt-6 text-xl md:text-2xl tracking-wide drop-shadow-md">{modalImg.label}</p>
+                        <p className="text-center text-white font-bold mt-4 md:mt-6 text-lg sm:text-xl md:text-2xl tracking-wide drop-shadow-md">
+                            {modalImg.label}
+                        </p>
                     </div>
                 </div>
             )}
