@@ -159,7 +159,7 @@ function WinnersPage() {
             {/* Modal lightbox */}
             {modalImg && (
                 <div
-                    className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-pointer overflow-y-auto"
+                    className="fixed inset-0 bg-black/95 z-[60] flex items-start justify-center p-4 sm:p-6 md:p-8 cursor-pointer overflow-y-auto"
                     onClick={() => setModalImg(null)}
                 >
                     <button
@@ -169,13 +169,13 @@ function WinnersPage() {
                         <X size={28} />
                     </button>
                     <div
-                        className="relative w-full max-w-4xl m-auto flex flex-col items-center justify-center py-10"
+                        className="relative w-full max-w-4xl my-auto flex flex-col items-center justify-center py-12"
                         onClick={e => e.stopPropagation()}
                     >
                         <img
                             src={modalImg.src}
                             alt={modalImg.alt}
-                            className="w-auto max-w-full max-h-[75vh] md:max-h-[85vh] object-contain rounded-xl shadow-2xl border-2 md:border-4 border-white cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+                            className="w-auto max-w-full object-contain rounded-xl shadow-2xl border-2 md:border-4 border-white cursor-pointer hover:scale-[1.02] transition-transform duration-300"
                             onClick={() => setModalImg(null)}
                         />
                         <p className="text-center text-white font-bold mt-4 md:mt-6 text-lg sm:text-xl md:text-2xl tracking-wide drop-shadow-md">
