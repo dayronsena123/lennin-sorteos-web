@@ -7,32 +7,32 @@ const fotosSorteo2 = [
     {
         src: '/ganadores-sorteo2/ganador_de_l_mototaxi.jfif',
         alt: 'Ganador de la Mototaxi',
-        label: '🏍️ Ganador Mototaxi'
+        label: 'Ganador Mototaxi'
     },
     {
         src: '/ganadores-sorteo2/ganadores_de_500soles_400soles_300soles_200soles_100soles.jfif',
         alt: 'Ganadores de efectivo',
-        label: '💰 Ganadores Efectivo'
+        label: 'Ganadores Efectivo'
     },
     {
         src: '/ganadores-sorteo2/foto_evidencia.jfif',
         alt: 'Foto evidencia entrega',
-        label: '📸 Evidencia de Entrega'
+        label: 'Evidencia de Entrega'
     },
     {
         src: '/ganadores-sorteo2/foto_evidencia (2).jfif',
         alt: 'Foto evidencia entrega 2',
-        label: '📸 Evidencia de Entrega'
+        label: 'Evidencia de Entrega'
     },
     {
         src: '/ganadores-sorteo2/20_ganadores_de_50soles.jfif',
         alt: 'Ganadores de 50 soles',
-        label: '🎉 20 Ganadores S/50'
+        label: '20 Ganadores S/50'
     },
     {
         src: '/ganadores-sorteo2/20_ganadores_de_50soles (2).jfif',
         alt: 'Ganadores de 50 soles 2',
-        label: '🎉 20 Ganadores S/50'
+        label: '20 Ganadores S/50'
     },
 ];
 
@@ -55,7 +55,7 @@ function WinnersPage() {
                         GANADORES DEL 2° SORTEO
                     </h2>
                     <p className="text-primary-300 text-lg">
-                        ¡Felicitaciones a todos los ganadores! Los premios fueron entregados con éxito. 🎊
+                        ¡Felicitaciones a todos los ganadores! Los premios fueron entregados con éxito.
                     </p>
                 </div>
 
@@ -97,7 +97,7 @@ function WinnersPage() {
                 {/* Mensaje entrega */}
                 <div className="text-center">
                     <span className="inline-block px-6 py-3 bg-green-500/20 border border-green-400/50 text-green-300 font-bold rounded-full text-base">
-                        ✅ Todos los premios del 2° Sorteo han sido entregados
+                        Todos los premios del 2° Sorteo han sido entregados
                     </span>
                 </div>
             </div>
@@ -159,22 +159,23 @@ function WinnersPage() {
             {/* Modal lightbox */}
             {modalImg && (
                 <div
-                    className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 cursor-pointer"
                     onClick={() => setModalImg(null)}
                 >
                     <button
-                        className="absolute top-4 right-4 bg-primary-800 hover:bg-primary-700 text-white rounded-full p-2 transition"
+                        className="absolute top-4 right-4 md:top-6 md:right-6 bg-primary-800 hover:bg-primary-700 text-white rounded-full p-2 transition z-50"
                         onClick={() => setModalImg(null)}
                     >
                         <X size={28} />
                     </button>
-                    <div className="max-w-2xl max-h-[90vh] w-full" onClick={e => e.stopPropagation()}>
+                    <div className="max-w-4xl w-full flex flex-col items-center justify-center mt-8 md:mt-0" onClick={e => e.stopPropagation()}>
                         <img
                             src={modalImg.src}
                             alt={modalImg.alt}
-                            className="w-full h-full object-contain rounded-2xl shadow-2xl"
+                            className="max-w-full max-h-[75vh] md:max-h-[85vh] object-contain rounded-xl shadow-2xl border-4 border-white cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+                            onClick={() => setModalImg(null)}
                         />
-                        <p className="text-center text-white font-bold mt-4 text-lg">{modalImg.label}</p>
+                        <p className="text-center text-white font-bold mt-6 text-xl md:text-2xl tracking-wide drop-shadow-md">{modalImg.label}</p>
                     </div>
                 </div>
             )}

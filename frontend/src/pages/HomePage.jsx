@@ -105,18 +105,18 @@ function HomePage() {
                     className="flex gap-12 text-primary-900 font-black text-base uppercase tracking-widest whitespace-nowrap"
                     style={{ animation: 'marquee 20s linear infinite' }}
                 >
-                    <span>★ 3 Laptops</span>
-                    <span>★ 1 Infinix G30 Pro</span>
-                    <span>★ Sorteo 24 Dic</span>
-                    <span>★ En Vivo Facebook</span>
-                    <span>★ 3 Laptops</span>
-                    <span>★ 1 Infinix G30 Pro</span>
-                    <span>★ Sorteo 24 Dic</span>
-                    <span>★ En Vivo Facebook</span>
-                    <span>★ 3 Laptops</span>
-                    <span>★ 1 Infinix G30 Pro</span>
-                    <span>★ Sorteo 24 Dic</span>
-                    <span>★ En Vivo Facebook</span>
+                    <span>★ Domingo 1 de Marzo</span>
+                    <span>★ Plaza de Armas</span>
+                    <span>★ 1 Mototaxi Honda 0km</span>
+                    <span>★ Domingo 1 de Marzo</span>
+                    <span>★ Plaza de Armas</span>
+                    <span>★ 1 Mototaxi Honda 0km</span>
+                    <span>★ Domingo 1 de Marzo</span>
+                    <span>★ Plaza de Armas</span>
+                    <span>★ 1 Mototaxi Honda 0km</span>
+                    <span>★ Domingo 1 de Marzo</span>
+                    <span>★ Plaza de Armas</span>
+                    <span>★ 1 Mototaxi Honda 0km</span>
                 </div>
             </div>
 
